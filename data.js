@@ -21,13 +21,13 @@ const TEAMS = {
 const STANDINGS = [
   { rank: 1, team: 'jen', mj: 10, g: 10, p: 0, setPlus: 30, setMinus: 3, ds: 27, coefSet: '10.00', ptsPlus: 817, ptsMinus: 614, dp: '+203', coefPts: '1.33', pts: 20, form: ['W','W','W','W','W','W','W','W','W','W'] },
   { rank: 2, team: 'kiki', mj: 9, g: 7, p: 2, setPlus: 22, setMinus: 13, ds: 9, coefSet: '1.69', ptsPlus: 804, ptsMinus: 711, dp: '+93', coefPts: '1.13', pts: 16, form: ['W','W','L','W','W','W','W','L','W'] },
-  { rank: 3, team: 'rhsp', mj: 10, g: 6, p: 4, setPlus: 20, setMinus: 17, ds: 3, coefSet: '1.18', ptsPlus: 796, ptsMinus: 765, dp: '+31', coefPts: '1.04', pts: 16, form: ['L','W','W','W','W','W','L','W','L','L'] },
-  { rank: 4, team: 'marv', mj: 10, g: 6, p: 4, setPlus: 22, setMinus: 20, ds: 2, coefSet: '1.10', ptsPlus: 904, ptsMinus: 902, dp: '+2', coefPts: '1.00', pts: 16, form: ['W','W','L','W','W','L','W','L','W','L'] },
-  { rank: 5, team: 'bier', mj: 10, g: 5, p: 5, setPlus: 18, setMinus: 19, ds: -1, coefSet: '0.95', ptsPlus: 838, ptsMinus: 808, dp: '+30', coefPts: '1.04', pts: 15, form: ['W','L','L','L','W','L','L','W','W','W'] },
-  { rank: 6, team: 'resc', mj: 8, g: 5, p: 3, setPlus: 20, setMinus: 13, ds: 7, coefSet: '1.54', ptsPlus: 743, ptsMinus: 706, dp: '+37', coefPts: '1.05', pts: 13, form: ['W','W','W','L','L','W','L','W'] },
+  { rank: 3, team: 'resc', mj: 8, g: 5, p: 3, setPlus: 20, setMinus: 13, ds: 7, coefSet: '1.54', ptsPlus: 743, ptsMinus: 706, dp: '+37', coefPts: '1.05', pts: 13, form: ['W','W','W','L','L','W','L','W'] },
+  { rank: 4, team: 'rhsp', mj: 10, g: 6, p: 4, setPlus: 20, setMinus: 17, ds: 3, coefSet: '1.18', ptsPlus: 796, ptsMinus: 765, dp: '+31', coefPts: '1.04', pts: 16, form: ['L','W','W','W','W','W','L','W','L','L'] },
+  { rank: 5, team: 'marv', mj: 10, g: 6, p: 4, setPlus: 22, setMinus: 20, ds: 2, coefSet: '1.10', ptsPlus: 904, ptsMinus: 902, dp: '+2', coefPts: '1.00', pts: 16, form: ['W','W','L','W','W','L','W','L','W','L'] },
+  { rank: 6, team: 'bier', mj: 10, g: 5, p: 5, setPlus: 18, setMinus: 19, ds: -1, coefSet: '0.95', ptsPlus: 838, ptsMinus: 808, dp: '+30', coefPts: '1.04', pts: 15, form: ['W','L','L','L','W','L','L','W','W','W'] },
   { rank: 7, team: 'rsc', mj: 8, g: 3, p: 5, setPlus: 15, setMinus: 19, ds: -4, coefSet: '0.79', ptsPlus: 699, ptsMinus: 715, dp: '-16', coefPts: '0.98', pts: 11, form: ['L','W','L','L','W','L','L','W'] },
-  { rank: 8, team: 'rhin', mj: 9, g: 2, p: 7, setPlus: 14, setMinus: 21, ds: -7, coefSet: '0.67', ptsPlus: 744, ptsMinus: 793, dp: '-49', coefPts: '0.94', pts: 11, form: ['L','L','L','L','W','L','L','W','L'] },
-  { rank: 9, team: 'manu', mj: 8, g: 2, p: 6, setPlus: 10, setMinus: 18, ds: -8, coefSet: '0.56', ptsPlus: 595, ptsMinus: 645, dp: '-50', coefPts: '0.92', pts: 10, form: ['L','L','W','L','L','W','L','L'] },
+  { rank: 8, team: 'manu', mj: 8, g: 2, p: 6, setPlus: 10, setMinus: 18, ds: -8, coefSet: '0.56', ptsPlus: 595, ptsMinus: 645, dp: '-50', coefPts: '0.92', pts: 10, form: ['L','L','W','L','L','W','L','L'] },
+  { rank: 9, team: 'rhin', mj: 9, g: 2, p: 7, setPlus: 14, setMinus: 21, ds: -7, coefSet: '0.67', ptsPlus: 744, ptsMinus: 793, dp: '-49', coefPts: '0.94', pts: 11, form: ['L','L','L','L','W','L','L','W','L'] },
   { rank: 10, team: 'star', mj: 10, g: 0, p: 10, setPlus: 2, setMinus: 30, ds: -28, coefSet: '0.07', ptsPlus: 513, ptsMinus: 794, dp: '-281', coefPts: '0.65', pts: 10, form: ['L','L','L','L','L','L','L','L','L','L'] },
 ];
 
