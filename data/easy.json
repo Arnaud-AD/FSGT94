@@ -1,0 +1,1040 @@
+{
+  "meta": {
+    "id": 3,
+    "slug": "easy",
+    "name": "Easy",
+    "format": "4x4",
+    "url": "https://volley-fsgt94.fr/championnat/3",
+    "lastUpdated": "2026-02-14T22:28:33",
+    "teamCount": 8,
+    "matchesPlayed": 30,
+    "matchesUpcoming": 26
+  },
+  "teams": {
+    "pyth": {
+      "name": "Pythons Collés",
+      "short": "PC",
+      "color": "#e74c3c"
+    },
+    "neku": {
+      "name": "Nekutā",
+      "short": "NE",
+      "color": "#3498db"
+    },
+    "fous": {
+      "name": "Les fous tuent",
+      "short": "FT",
+      "color": "#2ecc71"
+    },
+    "bats": {
+      "name": "Batstreet Back",
+      "short": "BB",
+      "color": "#f39c12"
+    },
+    "touk": {
+      "name": "TOUKC",
+      "short": "TO",
+      "color": "#9b59b6"
+    },
+    "punc": {
+      "name": "Punchline",
+      "short": "PU",
+      "color": "#1abc9c"
+    },
+    "eagl": {
+      "name": "Eagle 4",
+      "short": "E4",
+      "color": "#e67e22"
+    },
+    "fata": {
+      "name": "FATALS FURETS",
+      "short": "FF",
+      "color": "#f1c40f"
+    }
+  },
+  "standings": [
+    {
+      "rank": 1,
+      "team": "pyth",
+      "mj": 8,
+      "g": 7,
+      "p": 1,
+      "setPlus": 21,
+      "setMinus": 8,
+      "ds": 13,
+      "coefSet": "2.62",
+      "ptsPlus": 665,
+      "ptsMinus": 543,
+      "dp": "+122",
+      "coefPts": "1.22",
+      "pts": 15,
+      "formAller": [
+        "W",
+        "L",
+        "W",
+        "W",
+        "W",
+        "W",
+        "W"
+      ],
+      "formRetour": [
+        "W",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P"
+      ]
+    },
+    {
+      "rank": 2,
+      "team": "neku",
+      "mj": 7,
+      "g": 6,
+      "p": 1,
+      "setPlus": 19,
+      "setMinus": 7,
+      "ds": 12,
+      "coefSet": "2.71",
+      "ptsPlus": 607,
+      "ptsMinus": 519,
+      "dp": "+88",
+      "coefPts": "1.17",
+      "pts": 13,
+      "formAller": [
+        "W",
+        "W",
+        "L",
+        "W",
+        "W",
+        "W",
+        "W"
+      ],
+      "formRetour": [
+        "D",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P"
+      ]
+    },
+    {
+      "rank": 3,
+      "team": "fous",
+      "mj": 7,
+      "g": 5,
+      "p": 2,
+      "setPlus": 16,
+      "setMinus": 6,
+      "ds": 10,
+      "coefSet": "2.67",
+      "ptsPlus": 524,
+      "ptsMinus": 456,
+      "dp": "+68",
+      "coefPts": "1.15",
+      "pts": 12,
+      "formAller": [
+        "W",
+        "W",
+        "W",
+        "W",
+        "L",
+        "L",
+        "D"
+      ],
+      "formRetour": [
+        "W",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P"
+      ]
+    },
+    {
+      "rank": 4,
+      "team": "touk",
+      "mj": 7,
+      "g": 4,
+      "p": 3,
+      "setPlus": 15,
+      "setMinus": 12,
+      "ds": 3,
+      "coefSet": "1.25",
+      "ptsPlus": 565,
+      "ptsMinus": 562,
+      "dp": "+3",
+      "coefPts": "1.01",
+      "pts": 11,
+      "formAller": [
+        "L",
+        "L",
+        "W",
+        "W",
+        "W",
+        "L",
+        "W"
+      ],
+      "formRetour": [
+        "D",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P"
+      ]
+    },
+    {
+      "rank": 5,
+      "team": "bats",
+      "mj": 8,
+      "g": 4,
+      "p": 4,
+      "setPlus": 17,
+      "setMinus": 16,
+      "ds": 1,
+      "coefSet": "1.06",
+      "ptsPlus": 702,
+      "ptsMinus": 650,
+      "dp": "+52",
+      "coefPts": "1.08",
+      "pts": 12,
+      "formAller": [
+        "L",
+        "W",
+        "L",
+        "L",
+        "W",
+        "W",
+        "L"
+      ],
+      "formRetour": [
+        "W",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P"
+      ]
+    },
+    {
+      "rank": 6,
+      "team": "punc",
+      "mj": 8,
+      "g": 2,
+      "p": 6,
+      "setPlus": 8,
+      "setMinus": 19,
+      "ds": -11,
+      "coefSet": "0.42",
+      "ptsPlus": 532,
+      "ptsMinus": 620,
+      "dp": "-88",
+      "coefPts": "0.86",
+      "pts": 10,
+      "formAller": [
+        "L",
+        "L",
+        "W",
+        "L",
+        "L",
+        "W",
+        "L"
+      ],
+      "formRetour": [
+        "L",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P"
+      ]
+    },
+    {
+      "rank": 7,
+      "team": "fata",
+      "mj": 7,
+      "g": 1,
+      "p": 6,
+      "setPlus": 7,
+      "setMinus": 20,
+      "ds": -13,
+      "coefSet": "0.35",
+      "ptsPlus": 496,
+      "ptsMinus": 600,
+      "dp": "-104",
+      "coefPts": "0.83",
+      "pts": 8,
+      "formAller": [
+        "W",
+        "L",
+        "L",
+        "L",
+        "L",
+        "L",
+        "D"
+      ],
+      "formRetour": [
+        "L",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P"
+      ]
+    },
+    {
+      "rank": 8,
+      "team": "eagl",
+      "mj": 8,
+      "g": 1,
+      "p": 7,
+      "setPlus": 5,
+      "setMinus": 20,
+      "ds": -15,
+      "coefSet": "0.25",
+      "ptsPlus": 452,
+      "ptsMinus": 593,
+      "dp": "-141",
+      "coefPts": "0.76",
+      "pts": 9,
+      "formAller": [
+        "L",
+        "W",
+        "L",
+        "L",
+        "L",
+        "L",
+        "L"
+      ],
+      "formRetour": [
+        "L",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P"
+      ]
+    }
+  ],
+  "matchesPlayed": [
+    {
+      "date": "10/02/2026",
+      "home": "fous",
+      "away": "eagl",
+      "scoreHome": 3,
+      "scoreAway": 0,
+      "homeWin": true,
+      "status": "Terminé"
+    },
+    {
+      "date": "10/02/2026",
+      "home": "bats",
+      "away": "fata",
+      "scoreHome": 3,
+      "scoreAway": 2,
+      "homeWin": true,
+      "status": "Terminé"
+    },
+    {
+      "date": "09/02/2026",
+      "home": "pyth",
+      "away": "punc",
+      "scoreHome": 3,
+      "scoreAway": 0,
+      "homeWin": true,
+      "status": "Terminé"
+    },
+    {
+      "date": "28/01/2026",
+      "home": "eagl",
+      "away": "fata",
+      "scoreHome": 3,
+      "scoreAway": 0,
+      "homeWin": true,
+      "status": "Terminé"
+    },
+    {
+      "date": "21/01/2026",
+      "home": "eagl",
+      "away": "neku",
+      "scoreHome": 0,
+      "scoreAway": 3,
+      "homeWin": false,
+      "status": "Terminé"
+    },
+    {
+      "date": "20/01/2026",
+      "home": "bats",
+      "away": "pyth",
+      "scoreHome": 1,
+      "scoreAway": 3,
+      "homeWin": false,
+      "status": "Terminé"
+    },
+    {
+      "date": "19/01/2026",
+      "home": "pyth",
+      "away": "fata",
+      "scoreHome": 3,
+      "scoreAway": 0,
+      "homeWin": true,
+      "status": "Terminé"
+    },
+    {
+      "date": "13/01/2026",
+      "home": "bats",
+      "away": "eagl",
+      "scoreHome": 3,
+      "scoreAway": 0,
+      "homeWin": true,
+      "status": "Terminé"
+    },
+    {
+      "date": "12/01/2026",
+      "home": "punc",
+      "away": "touk",
+      "scoreHome": 1,
+      "scoreAway": 2,
+      "homeWin": false,
+      "status": "Terminé"
+    },
+    {
+      "date": "15/12/2025",
+      "home": "pyth",
+      "away": "neku",
+      "scoreHome": 3,
+      "scoreAway": 2,
+      "homeWin": true,
+      "status": "Terminé"
+    },
+    {
+      "date": "11/12/2025",
+      "home": "fata",
+      "away": "punc",
+      "scoreHome": 0,
+      "scoreAway": 3,
+      "homeWin": false,
+      "status": "Terminé"
+    },
+    {
+      "date": "09/12/2025",
+      "home": "fous",
+      "away": "neku",
+      "scoreHome": 0,
+      "scoreAway": 3,
+      "homeWin": false,
+      "status": "Terminé"
+    },
+    {
+      "date": "08/12/2025",
+      "home": "pyth",
+      "away": "touk",
+      "scoreHome": 3,
+      "scoreAway": 0,
+      "homeWin": true,
+      "status": "Terminé"
+    },
+    {
+      "date": "04/12/2025",
+      "home": "fata",
+      "away": "neku",
+      "scoreHome": 0,
+      "scoreAway": 3,
+      "homeWin": false,
+      "status": "Terminé"
+    },
+    {
+      "date": "02/12/2025",
+      "home": "fous",
+      "away": "touk",
+      "scoreHome": 1,
+      "scoreAway": 3,
+      "homeWin": false,
+      "status": "Terminé"
+    },
+    {
+      "date": "01/12/2025",
+      "home": "eagl",
+      "away": "pyth",
+      "scoreHome": 0,
+      "scoreAway": 3,
+      "homeWin": false,
+      "status": "Terminé"
+    },
+    {
+      "date": "01/12/2025",
+      "home": "punc",
+      "away": "bats",
+      "scoreHome": 0,
+      "scoreAway": 3,
+      "homeWin": false,
+      "status": "Terminé"
+    },
+    {
+      "date": "25/11/2025",
+      "home": "bats",
+      "away": "neku",
+      "scoreHome": 2,
+      "scoreAway": 3,
+      "homeWin": false,
+      "status": "Terminé"
+    },
+    {
+      "date": "25/11/2025",
+      "home": "fous",
+      "away": "punc",
+      "scoreHome": 3,
+      "scoreAway": 0,
+      "homeWin": true,
+      "status": "Terminé"
+    },
+    {
+      "date": "24/11/2025",
+      "home": "eagl",
+      "away": "touk",
+      "scoreHome": 0,
+      "scoreAway": 3,
+      "homeWin": false,
+      "status": "Terminé"
+    },
+    {
+      "date": "20/11/2025",
+      "home": "fata",
+      "away": "touk",
+      "scoreHome": 2,
+      "scoreAway": 3,
+      "homeWin": false,
+      "status": "Terminé"
+    },
+    {
+      "date": "18/11/2025",
+      "home": "fous",
+      "away": "bats",
+      "scoreHome": 3,
+      "scoreAway": 0,
+      "homeWin": true,
+      "status": "Terminé"
+    },
+    {
+      "date": "17/11/2025",
+      "home": "punc",
+      "away": "eagl",
+      "scoreHome": 2,
+      "scoreAway": 2,
+      "homeWin": true,
+      "status": "Punchline pts"
+    },
+    {
+      "date": "04/11/2025",
+      "home": "bats",
+      "away": "touk",
+      "scoreHome": 3,
+      "scoreAway": 2,
+      "homeWin": true,
+      "status": "Terminé"
+    },
+    {
+      "date": "03/11/2025",
+      "home": "pyth",
+      "away": "fous",
+      "scoreHome": 0,
+      "scoreAway": 3,
+      "homeWin": false,
+      "status": "Terminé"
+    },
+    {
+      "date": "03/11/2025",
+      "home": "punc",
+      "away": "neku",
+      "scoreHome": 0,
+      "scoreAway": 3,
+      "homeWin": false,
+      "status": "Terminé"
+    },
+    {
+      "date": "16/10/2025",
+      "home": "fata",
+      "away": "bats",
+      "scoreHome": 3,
+      "scoreAway": 2,
+      "homeWin": true,
+      "status": "Terminé"
+    },
+    {
+      "date": "15/10/2025",
+      "home": "eagl",
+      "away": "fous",
+      "scoreHome": 0,
+      "scoreAway": 3,
+      "homeWin": false,
+      "status": "Terminé"
+    },
+    {
+      "date": "13/10/2025",
+      "home": "punc",
+      "away": "pyth",
+      "scoreHome": 2,
+      "scoreAway": 3,
+      "homeWin": false,
+      "status": "Terminé"
+    },
+    {
+      "date": "N/C",
+      "home": "touk",
+      "away": "neku",
+      "scoreHome": 2,
+      "scoreAway": 2,
+      "homeWin": false,
+      "status": "Nekutā pts"
+    }
+  ],
+  "matchesUpcoming": [
+    {
+      "date": "09/02/2026",
+      "home": "neku",
+      "away": "touk",
+      "status": "Reporté"
+    },
+    {
+      "date": "16/02/2026",
+      "home": "punc",
+      "away": "neku",
+      "status": "Sem. 9"
+    },
+    {
+      "date": "17/02/2026",
+      "home": "fous",
+      "away": "pyth",
+      "status": "Sem. 9"
+    },
+    {
+      "date": "17/02/2026",
+      "home": "bats",
+      "away": "touk",
+      "status": "Sem. 9"
+    },
+    {
+      "date": "19/02/2026",
+      "home": "fata",
+      "away": "eagl",
+      "status": "Sem. 9"
+    },
+    {
+      "date": "09/03/2026",
+      "home": "pyth",
+      "away": "neku",
+      "status": "Sem. 10"
+    },
+    {
+      "date": "09/03/2026",
+      "home": "eagl",
+      "away": "punc",
+      "status": "Sem. 10"
+    },
+    {
+      "date": "10/03/2026",
+      "home": "bats",
+      "away": "fous",
+      "status": "Sem. 10"
+    },
+    {
+      "date": "12/03/2026",
+      "home": "fata",
+      "away": "touk",
+      "status": "Sem. 10"
+    },
+    {
+      "date": "23/03/2026",
+      "home": "punc",
+      "away": "fous",
+      "status": "Sem. 11"
+    },
+    {
+      "date": "23/03/2026",
+      "home": "eagl",
+      "away": "touk",
+      "status": "Sem. 11"
+    },
+    {
+      "date": "24/03/2026",
+      "home": "bats",
+      "away": "neku",
+      "status": "Sem. 11"
+    },
+    {
+      "date": "26/03/2026",
+      "home": "fata",
+      "away": "pyth",
+      "status": "Sem. 11"
+    },
+    {
+      "date": "30/03/2026",
+      "home": "pyth",
+      "away": "eagl",
+      "status": "Sem. 12"
+    },
+    {
+      "date": "31/03/2026",
+      "home": "fous",
+      "away": "touk",
+      "status": "Sem. 12"
+    },
+    {
+      "date": "31/03/2026",
+      "home": "bats",
+      "away": "punc",
+      "status": "Sem. 12"
+    },
+    {
+      "date": "02/04/2026",
+      "home": "fata",
+      "away": "neku",
+      "status": "Sem. 12"
+    },
+    {
+      "date": "06/04/2026",
+      "home": "pyth",
+      "away": "touk",
+      "status": "Sem. 13"
+    },
+    {
+      "date": "06/04/2026",
+      "home": "punc",
+      "away": "fata",
+      "status": "Sem. 13"
+    },
+    {
+      "date": "07/04/2026",
+      "home": "fous",
+      "away": "neku",
+      "status": "Sem. 13"
+    },
+    {
+      "date": "08/04/2026",
+      "home": "eagl",
+      "away": "bats",
+      "status": "Sem. 13"
+    },
+    {
+      "date": "14/04/2026",
+      "home": "fous",
+      "away": "fata",
+      "status": "Reporté"
+    },
+    {
+      "date": "04/05/2026",
+      "home": "pyth",
+      "away": "bats",
+      "status": "Sem. 14"
+    },
+    {
+      "date": "04/05/2026",
+      "home": "eagl",
+      "away": "neku",
+      "status": "Sem. 14"
+    },
+    {
+      "date": "04/05/2026",
+      "home": "punc",
+      "away": "touk",
+      "status": "Sem. 14"
+    },
+    {
+      "date": "07/05/2026",
+      "home": "fata",
+      "away": "fous",
+      "status": "Sem. 14"
+    }
+  ],
+  "prTeams": [
+    {
+      "rank": 1,
+      "team": "pyth",
+      "elo": 1637.8,
+      "movement": 18.2,
+      "record": "7-1",
+      "power": 95.8,
+      "calendar": "V x6",
+      "diffClass": "diff-easy"
+    },
+    {
+      "rank": 2,
+      "team": "neku",
+      "elo": 1627.3,
+      "movement": 15.0,
+      "record": "6-1",
+      "power": 92.3,
+      "calendar": "V vs Eagle",
+      "diffClass": "diff-easy"
+    },
+    {
+      "rank": 3,
+      "team": "fous",
+      "elo": 1565.7,
+      "movement": 20.4,
+      "record": "5-2",
+      "power": 71.8,
+      "calendar": "V vs Eagle",
+      "diffClass": "diff-easy"
+    },
+    {
+      "rank": 4,
+      "team": "touk",
+      "elo": 1539.5,
+      "movement": 18.7,
+      "record": "4-3",
+      "power": 63.1,
+      "calendar": "V vs Punchline",
+      "diffClass": "diff-easy"
+    },
+    {
+      "rank": 5,
+      "team": "bats",
+      "elo": 1508.4,
+      "movement": 13.1,
+      "record": "4-4",
+      "power": 52.8,
+      "calendar": "V vs FATALS",
+      "diffClass": "diff-easy"
+    },
+    {
+      "rank": 6,
+      "team": "punc",
+      "elo": 1411.1,
+      "movement": -18.2,
+      "record": "2-6",
+      "power": 20.4,
+      "calendar": "D vs Pythons",
+      "diffClass": "diff-hard"
+    },
+    {
+      "rank": 7,
+      "team": "eagl",
+      "elo": 1360.6,
+      "movement": -20.4,
+      "record": "1-7",
+      "power": 3.7,
+      "calendar": "D vs Les",
+      "diffClass": "diff-hard"
+    },
+    {
+      "rank": 8,
+      "team": "fata",
+      "elo": 1349.6,
+      "movement": -13.1,
+      "record": "1-6",
+      "power": 1.0,
+      "calendar": "D x6",
+      "diffClass": "diff-hard"
+    }
+  ],
+  "prPlayers": [],
+  "eloHistory": {
+    "pyth": [
+      1500,
+      1523.6,
+      1487.7,
+      1517.9,
+      1554.9,
+      1578.1,
+      1596.2,
+      1619.6,
+      1637.8
+    ],
+    "neku": [
+      1500,
+      1519.0,
+      1552.1,
+      1570.9,
+      1600.8,
+      1635.5,
+      1612.3,
+      1627.3
+    ],
+    "fous": [
+      1500,
+      1537.3,
+      1573.3,
+      1596.8,
+      1615.0,
+      1580.0,
+      1545.3,
+      1565.7
+    ],
+    "bats": [
+      1500,
+      1481.7,
+      1502.1,
+      1478.5,
+      1459.8,
+      1497.1,
+      1518.7,
+      1495.3,
+      1508.4
+    ],
+    "touk": [
+      1500,
+      1481.0,
+      1460.6,
+      1488.1,
+      1522.9,
+      1557.8,
+      1520.8,
+      1539.5
+    ],
+    "punc": [
+      1500,
+      1476.4,
+      1443.3,
+      1460.1,
+      1441.9,
+      1404.7,
+      1448.1,
+      1429.3,
+      1411.1
+    ],
+    "eagl": [
+      1500,
+      1462.7,
+      1445.9,
+      1411.1,
+      1380.9,
+      1359.2,
+      1344.2,
+      1381.0,
+      1360.6
+    ],
+    "fata": [
+      1500,
+      1518.3,
+      1490.8,
+      1460.9,
+      1417.5,
+      1399.5,
+      1362.6,
+      1349.6
+    ]
+  },
+  "evolutionData": {
+    "teams": {
+      "pyth": {
+        "points": [
+          0,
+          2,
+          3,
+          5,
+          7,
+          9,
+          11,
+          13,
+          15
+        ],
+        "rank": 1
+      },
+      "neku": {
+        "points": [
+          0,
+          2,
+          4,
+          6,
+          8,
+          10,
+          11,
+          13
+        ],
+        "rank": 2
+      },
+      "fous": {
+        "points": [
+          0,
+          2,
+          4,
+          6,
+          8,
+          9,
+          10,
+          12
+        ],
+        "rank": 3
+      },
+      "bats": {
+        "points": [
+          0,
+          1,
+          3,
+          4,
+          5,
+          7,
+          9,
+          10,
+          12
+        ],
+        "rank": 5
+      },
+      "touk": {
+        "points": [
+          0,
+          1,
+          2,
+          4,
+          6,
+          8,
+          9,
+          11
+        ],
+        "rank": 4
+      },
+      "punc": {
+        "points": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6,
+          8,
+          9,
+          10
+        ],
+        "rank": 6
+      },
+      "eagl": {
+        "points": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          8,
+          9
+        ],
+        "rank": 8
+      },
+      "fata": {
+        "points": [
+          0,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "rank": 7
+      }
+    }
+  }
+}
