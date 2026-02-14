@@ -16,7 +16,6 @@
                 <button class="tab active" onclick="showTab('classement')">Classement</button>
                 <button class="tab" onclick="showTab('matchs')">Matchs</button>
                 <button class="tab" onclick="showTab('powerranking')">Power Ranking</button>
-                <button class="tab" onclick="showTab('statistiques')">Statistiques</button>
             </div>
         </header>
 
@@ -25,7 +24,6 @@
             <button class="tab active" onclick="showTab('classement')">Classement</button>
             <button class="tab" onclick="showTab('matchs')">Matchs</button>
             <button class="tab" onclick="showTab('powerranking')">Power Ranking</button>
-            <button class="tab" onclick="showTab('statistiques')">Statistiques</button>
         </div>
 
         <!-- CLASSEMENT TAB -->
@@ -44,7 +42,7 @@
                 </div>
             </div>
             <div id="classement-evolution" class="classement-sub-tab-content">
-                <div class="chart-container" style="background: var(--card-bg); border-radius: 12px; padding: 20px; margin-top: 16px;">
+                <div class="chart-container" style="background: var(--bg-header); border-radius: 12px; padding: 20px; margin-top: 16px;">
                     <canvas id="evolutionChart" width="800" height="400"></canvas>
                 </div>
             </div>
@@ -71,30 +69,8 @@
             </div>
         </div>
 
-        <!-- STATISTIQUES TAB -->
-        <div id="statistiques" class="tab-content">
-            <h2 class="section-title">Statistiques — Jen et ses Saints</h2>
-            <div class="sub-tabs">
-                <button class="sub-tab active" onclick="showStatsSubTab('stats-matchs', this)">Par match</button>
-                <button class="sub-tab" onclick="showStatsSubTab('stats-annee', this)">Saison</button>
-                <button class="sub-tab" onclick="showStatsSubTab('stats-sets', this)">Sets joués</button>
-            </div>
-            <div id="stats-matchs" class="stats-sub-tab-content active">
-                <div id="stats-matchs-content"></div>
-            </div>
-            <div id="stats-annee" class="stats-sub-tab-content">
-                <div id="stats-annee-content"></div>
-            </div>
-            <div id="stats-sets" class="stats-sub-tab-content">
-                <div class="card" style="background: var(--bg-header); border-radius: 12px; padding: 20px; margin-top: 16px;">
-                    <h3 style="margin-bottom: 16px; color: var(--text-primary);">Sets joués</h3>
-                    <p style="color: var(--text-secondary);">Données à venir...</p>
-                </div>
-            </div>
-        </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="data.js"></script>
     <script src="app.js"></script>
 </body>

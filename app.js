@@ -3,8 +3,7 @@
 // All rendering and interaction logic.
 // Depends on global constants from data.js:
 //   TEAMS, STANDINGS, MATCHES_PLAYED, MATCHES_UPCOMING,
-//   PR_TEAMS, PR_PLAYERS, MATCH_STATS, ANNUAL_STATS,
-//   PLAYER_CHARTS, EVOLUTION_DATA
+//   PR_TEAMS, PR_PLAYERS, EVOLUTION_DATA
 // ============================================================
 
 // ------------------------------------------------------------
@@ -34,24 +33,6 @@ function showClassementSubTab(subTabId, btn) {
     if (subTabId === 'classement-evolution') setTimeout(drawEvolutionChart, 100);
 }
 
-function showStatsSubTab(subTabId, btn) {
-    document.querySelectorAll('.stats-sub-tab-content').forEach(c => c.classList.remove('active'));
-    btn.parentElement.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
-    document.getElementById(subTabId).classList.add('active');
-    btn.classList.add('active');
-}
-
-function showMatchStat(matchId, btn) {
-    document.querySelectorAll('.match-stat-content').forEach(c => {
-        c.classList.remove('active');
-        c.style.display = 'none';
-    });
-    document.querySelectorAll('.match-stat-tab').forEach(t => t.classList.remove('active'));
-    const el = document.getElementById(matchId);
-    el.classList.add('active');
-    el.style.display = 'block';
-    btn.classList.add('active');
-}
 
 // ------------------------------------------------------------
 // 2. Render functions
@@ -111,6 +92,15 @@ function renderStandings() {
     </div>`;
 }
 
+function toggleMatchSection(sectionId) {
+    const content = document.getElementById(sectionId);
+    const header = content.previousElementSibling;
+    const arrow = header.querySelector('.section-arrow');
+    content.classList.toggle('collapsed');
+    arrow.classList.toggle('collapsed');
+    header.classList.toggle('header-collapsed');
+}
+
 function renderMatches() {
     const container = document.getElementById('matchs-content');
     if (!container) return;
@@ -141,14 +131,69 @@ function renderMatches() {
         </div>`;
     });
 
-    // Upcoming matches
+    // Sort upcoming matches by date (N/C at the end)
+    function parseMatchDate(d) {
+        if (!d || d === 'N/C') return null;
+        const parts = d.split('/');
+        if (parts.length !== 3) return null;
+        return new Date(parts[2], parts[1] - 1, parts[0]);
+    }
+    const sortedUpcoming = [...MATCHES_UPCOMING].sort((a, b) => {
+        const da = parseMatchDate(a.date);
+        const db = parseMatchDate(b.date);
+        if (!da && !db) return 0;
+        if (!da) return -1;
+        if (!db) return 1;
+        return da - db;
+    });
+
+    // Upcoming matches - group by semaine for alternating backgrounds
+    // Extract unique semaine numbers (excluding Reporté)
+    const semaineSet = new Set();
+    sortedUpcoming.forEach(m => {
+        const semMatch = m.status.match(/Sem\.\s*(\d+)/);
+        if (semMatch) semaineSet.add(parseInt(semMatch[1]));
+    });
+    const semaineList = [...semaineSet].sort((a, b) => a - b);
+    // Map each semaine to an index for alternating bg
+    const semaineIndex = {};
+    semaineList.forEach((sem, i) => { semaineIndex[sem] = i; });
+
+    // Build rank lookup from STANDINGS for clash detection
+    const teamRank = {};
+    STANDINGS.forEach(s => { teamRank[s.team] = s.rank; });
+
     let upcomingCards = '';
-    MATCHES_UPCOMING.forEach(m => {
+    sortedUpcoming.forEach(m => {
         const homeTeam = TEAMS[m.home];
         const awayTeam = TEAMS[m.away];
-        const statusClass = m.status.includes('Report') ? 'status-postponed' : 'status-upcoming';
-        upcomingCards += `<div class="match-card">
-            <div class="match-date">${m.date}</div>
+        const isPostponed = m.status.includes('Report');
+        const statusClass = isPostponed ? 'status-postponed' : 'status-upcoming';
+
+        // Determine card extra classes
+        let cardClasses = 'match-card';
+        if (isPostponed) {
+            cardClasses += ' match-card-postponed';
+        } else {
+            const semMatch = m.status.match(/Sem\.\s*(\d+)/);
+            if (semMatch) {
+                const idx = semaineIndex[parseInt(semMatch[1])];
+                if (idx % 2 === 0) cardClasses += ' match-card-sem-even';
+            }
+        }
+
+        // Clash badge: top 3 vs top 3 = 🔥, top 5 vs top 5 = ⚡
+        const rH = teamRank[m.home] || 99;
+        const rA = teamRank[m.away] || 99;
+        let clashBadge = '';
+        if (rH <= 3 && rA <= 3) {
+            clashBadge = '<span class="clash-badge clash-top3" title="Choc au sommet">🔥</span>';
+        } else if (rH <= 5 && rA <= 5) {
+            clashBadge = '<span class="clash-badge clash-top5" title="Affiche">⚡</span>';
+        }
+
+        upcomingCards += `<div class="${cardClasses}">
+            <div class="match-date">${m.date}${clashBadge}</div>
             <div class="match-teams">
                 <div class="match-team home">
                     <span class="team-name">${homeTeam.name}</span>
@@ -170,12 +215,24 @@ function renderMatches() {
 
     container.innerHTML = `
         <div class="matches-section">
-            <div class="section-header"><h3 class="section-title">R\u00e9sultats</h3><span class="section-badge">${MATCHES_PLAYED.length} matchs</span></div>
-            ${playedCards}
+            <div class="section-header" onclick="toggleMatchSection('played-matches-content')">
+                <h3 class="section-title">R\u00e9sultats</h3>
+                <span class="section-badge">${MATCHES_PLAYED.length} matchs</span>
+                <span class="section-arrow">&#9660;</span>
+            </div>
+            <div id="played-matches-content" class="section-collapsible">
+                ${playedCards}
+            </div>
         </div>
         <div class="matches-section">
-            <div class="section-header"><h3 class="section-title">\u00c0 venir</h3><span class="section-badge">${MATCHES_UPCOMING.length} matchs</span></div>
-            ${upcomingCards}
+            <div class="section-header" onclick="toggleMatchSection('upcoming-matches-content')">
+                <h3 class="section-title">\u00c0 venir</h3>
+                <span class="section-badge">${MATCHES_UPCOMING.length} matchs</span>
+                <span class="section-arrow">&#9660;</span>
+            </div>
+            <div id="upcoming-matches-content" class="section-collapsible">
+                ${upcomingCards}
+            </div>
         </div>`;
 }
 
@@ -246,354 +303,6 @@ function renderPRPlayers() {
     <p style="text-align: center; color: var(--text-secondary); font-size: 12px; margin-top: 16px;">${PR_PLAYERS.length} joueurs class\u00e9s</p>`;
 }
 
-// --- Helpers for percentage coloring in match stats ---
-
-function attPlusColor(pct) {
-    if (pct >= 50) return '#27ae60';
-    if (pct >= 40) return '#e67e22';
-    return '#e74c3c';
-}
-
-function fdColor(pct) {
-    if (pct <= 15) return '#27ae60';
-    if (pct <= 25) return '#e67e22';
-    return '#e74c3c';
-}
-
-function formatAttPlus(val, pct) {
-    if (val === 0 && pct === 0) return `0 (0%)`;
-    const color = attPlusColor(pct);
-    return `${val} <span style="color: ${color}; font-weight: 600;">(${pct}%)</span>`;
-}
-
-function formatAttMinus(val, pct) {
-    return `${val} (${pct}%)`;
-}
-
-function formatFD(val, pct) {
-    if (val === 0 && pct === 0) return `0 (0%)`;
-    const color = fdColor(pct);
-    return `${val} <span style="color: ${color}; font-weight: 600;">(${pct}%)</span>`;
-}
-
-function ipStyle(val) {
-    if (val === '-' || val === 0) return '';
-    if (typeof val === 'string' && val.startsWith('+')) return 'color: var(--win-color); font-weight: 600;';
-    if (typeof val === 'number' && val > 0) return 'color: var(--win-color); font-weight: 600;';
-    if (typeof val === 'string' && val.startsWith('-')) return 'color: var(--loss-color); font-weight: 600;';
-    if (typeof val === 'number' && val < 0) return 'color: var(--loss-color); font-weight: 600;';
-    return '';
-}
-
-function buildSetTable(set) {
-    if (set.noStats) {
-        return `<div style="margin-bottom: 24px;">
-            <h4 style="color: #0056D2; margin-bottom: 12px; font-size: 14px;">${set.title}</h4>
-            <p style="color: var(--text-secondary); font-style: italic; font-size: 12px;">${set.noStatsMsg}</p>
-        </div>`;
-    }
-
-    let playerRows = '';
-    set.players.forEach((p, idx) => {
-        const isTotal = p.isTotal;
-        const bgStyle = isTotal
-            ? 'background: #e8e8e8; font-weight: 600;'
-            : (idx % 2 === 1 && !isTotal ? 'background: #fafafa;' : '');
-        const tdPad = isTotal ? 'padding: 6px 12px;' : 'padding: 4px 12px;';
-
-        const attPlusCell = (p.attPlusP !== undefined && p.attPlusP !== null)
-            ? formatAttPlus(p.attPlus, p.attPlusP)
-            : `${p.attPlus}`;
-        const attMinusCell = (p.attMinusP !== undefined && p.attMinusP !== null)
-            ? formatAttMinus(p.attMinus, p.attMinusP)
-            : `${p.attMinus}`;
-        const fdCell = (p.fdP !== undefined && p.fdP !== null)
-            ? formatFD(p.fd, p.fdP)
-            : `${p.fd}`;
-
-        const totStyle = isTotal ? '' : ' font-weight: 600;';
-
-        playerRows += `<tr${bgStyle ? ` style="${bgStyle}"` : ''}>` +
-            `<td style="${tdPad}">${p.name}</td>` +
-            `<td style="text-align: center;">${attPlusCell}</td>` +
-            `<td style="text-align: center;">${attMinusCell}</td>` +
-            `<td style="text-align: center;">${fdCell}</td>` +
-            `<td style="text-align: center;">${p.bl}</td>` +
-            `<td style="text-align: center;">${p.ac}</td>` +
-            `<td style="text-align: center;">${p.fs}</td>` +
-            `<td style="text-align: center;${totStyle}">${p.tot}</td>` +
-            `</tr>`;
-    });
-
-    return `<div style="margin-bottom: 24px;">
-        <h4 style="color: #0056D2; margin-bottom: 12px; font-size: 14px;">${set.title}</h4>
-        <div style="overflow-x: auto;">
-            <table style="font-size: 12px; border-collapse: collapse;">
-                <thead>
-                    <tr style="background: #f0f0f0;">
-                        <th style="padding: 6px 12px; text-align: left;">Joueur</th>
-                        <th style="text-align: center;">Att+</th>
-                        <th style="text-align: center;">Att-</th>
-                        <th style="text-align: center;">FD</th>
-                        <th style="text-align: center;">Bl</th>
-                        <th style="text-align: center;">Ac</th>
-                        <th style="text-align: center;">FS</th>
-                        <th style="text-align: center;">Tot</th>
-                    </tr>
-                </thead>
-                <tbody>${playerRows}</tbody>
-            </table>
-        </div>
-    </div>`;
-}
-
-function buildRecapTable(recap) {
-    let playerRows = '';
-    recap.players.forEach((p, idx) => {
-        const isTotal = p.isTotal;
-        const bgStyle = isTotal
-            ? 'background: #e8e8e8; font-weight: 600;'
-            : (idx % 2 === 1 && !isTotal ? 'background: #fafafa;' : '');
-        const tdPad = isTotal ? 'padding: 6px 12px;' : 'padding: 4px 12px;';
-
-        const attPlusCell = (p.attPlusP !== undefined && p.attPlusP !== null)
-            ? formatAttPlus(p.attPlus, p.attPlusP)
-            : `${p.attPlus}`;
-        const attMinusCell = (p.attMinusP !== undefined && p.attMinusP !== null)
-            ? formatAttMinus(p.attMinus, p.attMinusP)
-            : `${p.attMinus}`;
-        const fdCell = (p.fdP !== undefined && p.fdP !== null)
-            ? formatFD(p.fd, p.fdP)
-            : `${p.fd}`;
-
-        const totStyle = isTotal ? '' : ' font-weight: 600;';
-        const ipVal = p.ip !== undefined ? p.ip : '-';
-        const ipSt = ipStyle(ipVal);
-
-        playerRows += `<tr${bgStyle ? ` style="${bgStyle}"` : ''}>` +
-            `<td style="${tdPad}">${p.name}</td>` +
-            `<td style="text-align: center;">${attPlusCell}</td>` +
-            `<td style="text-align: center;">${attMinusCell}</td>` +
-            `<td style="text-align: center;">${fdCell}</td>` +
-            `<td style="text-align: center;">${p.bl}</td>` +
-            `<td style="text-align: center;">${p.ac}</td>` +
-            `<td style="text-align: center;">${p.fs}</td>` +
-            `<td style="text-align: center;${totStyle}">${p.tot}</td>` +
-            `<td style="text-align: center;${ipSt ? ' ' + ipSt : ''}">${ipVal}</td>` +
-            `</tr>`;
-    });
-
-    return `<div style="margin-top: 24px; padding-top: 20px; border-top: 2px solid #0056D2;">
-        <h4 style="color: #0056D2; margin-bottom: 12px; font-size: 16px;">\ud83d\udcca R\u00e9capitulatif du match</h4>
-        <div style="overflow-x: auto;">
-            <table style="font-size: 12px; border-collapse: collapse;">
-                <thead>
-                    <tr style="background: #f0f0f0;">
-                        <th style="padding: 6px 12px; text-align: left;">Joueur</th>
-                        <th style="text-align: center;">Att+</th>
-                        <th style="text-align: center;">Att-</th>
-                        <th style="text-align: center;">FD</th>
-                        <th style="text-align: center;">Bl</th>
-                        <th style="text-align: center;">Ac</th>
-                        <th style="text-align: center;">FS</th>
-                        <th style="text-align: center;">Tot</th>
-                        <th style="text-align: center;">IP</th>
-                    </tr>
-                </thead>
-                <tbody>${playerRows}</tbody>
-            </table>
-        </div>
-    </div>`;
-}
-
-function renderMatchStats() {
-    const container = document.getElementById('stats-matchs-content');
-    if (!container) return;
-
-    // Build tab buttons
-    let tabs = '';
-    MATCH_STATS.forEach((match, i) => {
-        const activeClass = i === 0 ? 'match-stat-tab active' : 'match-stat-tab';
-        tabs += `<button class="${activeClass}" onclick="showMatchStat('${match.id}', this)">${match.label}</button>`;
-    });
-
-    // Build match content panels
-    let panels = '';
-    MATCH_STATS.forEach((match, i) => {
-        const isActive = i === 0;
-        const displayStyle = isActive ? 'display: block;' : 'display: none;';
-        const activeClass = isActive ? 'match-stat-content active' : 'match-stat-content';
-
-        let inner = '';
-
-        // Header
-        inner += `<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
-            <h3 style="margin: 0;">${match.label}</h3>
-            <span style="background: var(--win-color); color: white; padding: 4px 12px; border-radius: 12px; font-size: 13px; font-weight: 600;">${match.result}</span>
-        </div>`;
-        inner += `<p style="color: var(--text-secondary); margin-bottom: ${match.noStats ? '16px' : '20px'};">${match.date}</p>`;
-
-        if (match.noStats) {
-            inner += `<p style="color: var(--text-secondary);">${match.noStatsMsg}</p>`;
-        } else {
-            // Sets
-            if (match.sets) {
-                match.sets.forEach(set => {
-                    inner += buildSetTable(set);
-                });
-            }
-            // Recap
-            if (match.recap) {
-                inner += buildRecapTable(match.recap);
-            }
-        }
-
-        panels += `<div id="${match.id}" class="${activeClass}" style="${displayStyle}">
-            <div class="card" style="background: var(--bg-header); border-radius: 12px; padding: 20px;">
-                ${inner}
-            </div>
-        </div>`;
-    });
-
-    container.innerHTML = `<div class="match-stats-tabs" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; margin-bottom: 16px;">
-        ${tabs}
-    </div>
-    ${panels}`;
-}
-
-function renderAnnualStats() {
-    const container = document.getElementById('stats-annee-content');
-    if (!container) return;
-
-    const stats = ANNUAL_STATS;
-
-    // Main table rows
-    let mainRows = '';
-    stats.players.forEach((p, idx) => {
-        const isTotal = p.isTotal;
-        const bgStyle = isTotal
-            ? 'background: #e8e8e8; font-weight: 600;'
-            : (idx % 2 === 1 && !isTotal ? 'background: #fafafa;' : '');
-        const tdPad = isTotal ? 'padding: 6px 12px;' : 'padding: 4px 12px;';
-
-        const attPlusCell = (p.attPlusP !== undefined && p.attPlusP !== null)
-            ? formatAttPlus(p.attPlus, p.attPlusP)
-            : `${p.attPlus}`;
-        const attMinusCell = (p.attMinusP !== undefined && p.attMinusP !== null)
-            ? formatAttMinus(p.attMinus, p.attMinusP)
-            : `${p.attMinus}`;
-        const fdCell = (p.fdP !== undefined && p.fdP !== null)
-            ? formatFD(p.fd, p.fdP)
-            : `${p.fd}`;
-
-        const ipVal = p.ip !== undefined ? p.ip : '-';
-        const ipSt = ipStyle(ipVal);
-        const nameStyle = isTotal ? '' : ' font-weight: 600;';
-
-        mainRows += `<tr${bgStyle ? ` style="${bgStyle}"` : ''}>` +
-            `<td style="${tdPad}${nameStyle}">${p.name}</td>` +
-            `<td style="text-align: center;">${p.matchs}</td>` +
-            `<td style="text-align: center;">${attPlusCell}</td>` +
-            `<td style="text-align: center;">${attMinusCell}</td>` +
-            `<td style="text-align: center;">${fdCell}</td>` +
-            `<td style="text-align: center; font-weight: 600;">${p.tot}</td>` +
-            `<td style="text-align: center;${ipSt ? ' ' + ipSt : ''}">${ipVal}</td>` +
-            `<td style="text-align: center;">${p.bl}</td>` +
-            `<td style="text-align: center;">${p.ac}</td>` +
-            `<td style="text-align: center;">${p.fs}</td>` +
-            `</tr>`;
-    });
-
-    // Top performers
-    let topPerformers = '';
-    stats.topPerformers.forEach(tp => {
-        topPerformers += `<div style="background: #f8f9fa; padding: 12px 16px; border-radius: 8px; flex: 1; min-width: 200px;">
-            <strong>${tp.title}</strong><br>
-            <span style="color: var(--win-color);">${tp.value}</span>
-        </div>`;
-    });
-
-    // Player charts
-    let chartDivs = '';
-    PLAYER_CHARTS.forEach(p => {
-        chartDivs += `<div style="background: #f8f9fa; padding: 16px; border-radius: 8px; width: 280px;">
-            <h5 style="text-align: center; margin-bottom: 12px; color: #333;">${p.label}</h5>
-            <div style="width: 250px; height: 180px; margin: 0 auto;">
-                <canvas id="${p.id}"></canvas>
-            </div>
-        </div>`;
-    });
-
-    container.innerHTML = `<div class="card" style="background: var(--bg-header); border-radius: 12px; padding: 20px; margin-top: 16px;">
-        <h3 style="margin-bottom: 20px; color: var(--text-primary);">\ud83d\udcca ${stats.title}</h3>
-        <p style="color: var(--text-secondary); margin-bottom: 20px; font-size: 13px;">${stats.description}</p>
-
-        <div style="overflow-x: auto;">
-            <table style="font-size: 12px; border-collapse: collapse;">
-                <thead>
-                    <tr style="background: #f0f0f0;">
-                        <th style="padding: 6px 12px; text-align: left;">Joueur</th>
-                        <th style="text-align: center;">Matchs</th>
-                        <th style="text-align: center;">Att+</th>
-                        <th style="text-align: center;">Att-</th>
-                        <th style="text-align: center;">FD</th>
-                        <th style="text-align: center;">Tot</th>
-                        <th style="text-align: center;">IP</th>
-                        <th style="text-align: center;">Bl</th>
-                        <th style="text-align: center;">Ac</th>
-                        <th style="text-align: center;">FS</th>
-                    </tr>
-                </thead>
-                <tbody>${mainRows}</tbody>
-            </table>
-        </div>
-
-        <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #e0e0e0;">
-            <h4 style="color: #0056D2; margin-bottom: 12px; font-size: 14px;">\ud83c\udfc6 Top Performers</h4>
-            <div style="display: flex; flex-wrap: wrap; gap: 16px; font-size: 13px;">
-                ${topPerformers}
-            </div>
-        </div>
-
-        <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #e0e0e0;">
-            <h4 style="color: #0056D2; margin-bottom: 16px; font-size: 14px;">\ud83d\udcc8 Statistiques par joueur (%)</h4>
-            <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-                ${chartDivs}
-            </div>
-        </div>
-    </div>`;
-
-    // Initialize Chart.js charts
-    const chartOptions = {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: { display: false }
-        },
-        scales: {
-            y: {
-                beginAtZero: false,
-                min: -10,
-                max: 65,
-                ticks: { stepSize: 5 }
-            }
-        }
-    };
-
-    PLAYER_CHARTS.forEach(p => {
-        new Chart(document.getElementById(p.id), {
-            type: 'bar',
-            data: {
-                labels: ['Att+', 'Att-', 'FD', 'IP'],
-                datasets: [{
-                    data: p.data,
-                    backgroundColor: [p.color, p.color, p.color, '#B39DDB']
-                }]
-            },
-            options: chartOptions
-        });
-    });
-}
 
 // ------------------------------------------------------------
 // 3. Evolution chart (canvas drawing)
@@ -810,8 +519,6 @@ document.addEventListener('DOMContentLoaded', () => {
     renderMatches();
     renderPRTeams();
     renderPRPlayers();
-    renderMatchStats();
-    renderAnnualStats();
     drawEvolutionChart();
 });
 
