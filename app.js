@@ -8,6 +8,7 @@
 // ------------------------------------------------------------
 
 let DATA = null;          // Current championship data (parsed JSON)
+let GINETTE_DATA = null;  // Ginette cross-division data (parsed JSON)
 let CHAMPIONSHIPS = null; // Championship registry
 let currentSlug = null;   // Currently loaded championship slug
 
@@ -32,24 +33,78 @@ document.addEventListener('DOMContentLoaded', async () => {
 async function loadChampionship(slug) {
     showLoading(true);
     try {
-        const resp = await fetch('data/' + slug + '.json');
-        if (!resp.ok) throw new Error('Failed to load ' + slug);
-        DATA = await resp.json();
-        currentSlug = slug;
+        if (slug === 'ginette') {
+            const resp = await fetch('data/ginette.json');
+            if (!resp.ok) throw new Error('Failed to load ginette');
+            GINETTE_DATA = await resp.json();
+            currentSlug = slug;
 
-        const url = new URL(window.location);
-        url.searchParams.set('champ', slug);
-        history.replaceState(null, '', url);
+            const url = new URL(window.location);
+            url.searchParams.set('champ', slug);
+            history.replaceState(null, '', url);
 
-        document.title = 'FSGT94 Volley - ' + DATA.meta.name;
-        updateDropdownSelection(slug);
-        injectTeamColors(DATA.teams);
-        injectRankColors(Object.keys(DATA.teams).length);
-        renderAll();
+            document.title = 'FSGT94 Volley - Coupe Ginette';
+            updateDropdownSelection(slug);
+            setGinetteMode(true);
+            renderGinetteClassement();
+            renderGinette();
+        } else {
+            const resp = await fetch('data/' + slug + '.json');
+            if (!resp.ok) throw new Error('Failed to load ' + slug);
+            DATA = await resp.json();
+            currentSlug = slug;
+
+            const url = new URL(window.location);
+            url.searchParams.set('champ', slug);
+            history.replaceState(null, '', url);
+
+            document.title = 'FSGT94 Volley - ' + DATA.meta.name;
+            updateDropdownSelection(slug);
+            setGinetteMode(false);
+            injectTeamColors(DATA.teams);
+            injectRankColors(Object.keys(DATA.teams).length);
+            renderAll();
+        }
     } catch (err) {
         console.error('Error loading championship:', err);
     } finally {
         showLoading(false);
+    }
+}
+
+function setGinetteMode(isGinette) {
+    var headerTabs = document.querySelector('.tabs');
+    var mobileTabs = document.querySelector('.mobile-tabs');
+    var ginetteTabs = document.querySelector('.ginette-tabs');
+    var mobileGinetteTabs = document.querySelector('.mobile-ginette-tabs');
+    var ginetteDiv = document.getElementById('ginette');
+    var normalTabs = ['classement', 'matchs', 'powerranking'];
+
+    if (isGinette) {
+        // Hide normal tabs, show ginette tabs
+        if (headerTabs) headerTabs.style.display = 'none';
+        if (mobileTabs) mobileTabs.style.display = 'none';
+        if (ginetteTabs) ginetteTabs.style.display = '';
+        if (mobileGinetteTabs) mobileGinetteTabs.style.display = '';
+        normalTabs.forEach(function(id) {
+            var el = document.getElementById(id);
+            if (el) el.classList.remove('active');
+        });
+        if (ginetteDiv) ginetteDiv.classList.add('active');
+    } else {
+        // Show normal tabs, hide ginette tabs
+        if (headerTabs) headerTabs.style.display = '';
+        if (mobileTabs) mobileTabs.style.display = '';
+        if (ginetteTabs) ginetteTabs.style.display = 'none';
+        if (mobileGinetteTabs) mobileGinetteTabs.style.display = 'none';
+        if (ginetteDiv) ginetteDiv.classList.remove('active');
+        // Restore default tab
+        var classement = document.getElementById('classement');
+        if (classement) classement.classList.add('active');
+        // Reset tab button states
+        document.querySelectorAll('.tabs .tab, .mobile-tabs .tab').forEach(function(t, i) {
+            t.classList.toggle('active', i % 3 === 0);
+        });
     }
 }
 
@@ -74,10 +129,20 @@ function populateChampionshipDropdown() {
     const selects = document.querySelectorAll('#championship-select, #championship-select-mobile');
     selects.forEach(function(select) {
         select.innerHTML = '';
+        var addedSeparator = false;
         CHAMPIONSHIPS.championships.forEach(function(c) {
+            // Add separator before special formats (coupe)
+            if (c.format === 'coupe' && !addedSeparator) {
+                var sep = document.createElement('option');
+                sep.disabled = true;
+                sep.textContent = '──────────';
+                select.appendChild(sep);
+                addedSeparator = true;
+            }
             const opt = document.createElement('option');
             opt.value = c.slug;
-            opt.textContent = c.name + (c.format === '6x6' ? ' (6x6)' : '');
+            var suffix = c.format === '6x6' ? ' (6x6)' : c.format === 'coupe' ? ' (Coupe)' : '';
+            opt.textContent = c.name + suffix;
             select.appendChild(opt);
         });
     });
@@ -159,6 +224,24 @@ function showClassementSubTab(subTabId, btn) {
     document.getElementById(subTabId).classList.add('active');
     btn.classList.add('active');
     if (subTabId === 'classement-evolution') setTimeout(drawEvolutionChart, 100);
+}
+
+function showGinetteTab(tabId) {
+    document.querySelectorAll('.ginette-tab-content').forEach(function(c) { c.classList.remove('active'); });
+    document.querySelectorAll('.ginette-tabs .tab, .mobile-ginette-tabs .tab').forEach(function(t) { t.classList.remove('active'); });
+    document.getElementById(tabId).classList.add('active');
+    // Sync both desktop and mobile tab button states
+    var idx = tabId === 'ginette-classement' ? 0 : 1;
+    document.querySelectorAll('.ginette-tabs .tab, .mobile-ginette-tabs .tab').forEach(function(t, i) {
+        if (i % 2 === idx) t.classList.add('active');
+    });
+}
+
+function showGinetteSubTab(subTabId, btn) {
+    document.querySelectorAll('.ginette-sub-tab-content').forEach(function(c) { c.classList.remove('active'); });
+    btn.parentElement.querySelectorAll('.sub-tab').forEach(function(t) { t.classList.remove('active'); });
+    document.getElementById(subTabId).classList.add('active');
+    btn.classList.add('active');
 }
 
 // ------------------------------------------------------------
@@ -459,7 +542,281 @@ function renderPRPlayers() {
 }
 
 // ------------------------------------------------------------
-// 7. Evolution chart (canvas drawing)
+// 7. Ginette cross-division ranking
+// ------------------------------------------------------------
+
+var GINETTE_DIV_COLORS = {
+    "elite": "#1a73e8",
+    "hard": "#9b59b6",
+    "medium": "#34a853",
+    "easy": "#f39c12",
+    "starter": "#ff5722",
+    "or6x6": "#e91e63",
+    "argent": "#607d8b"
+};
+
+function renderGinetteMatchCards(matches) {
+    var html = '';
+    matches.forEach(function(m) {
+        var homeColor = GINETTE_DIV_COLORS[m.homeDivision] || '#999';
+        var awayColor = GINETTE_DIV_COLORS[m.awayDivision] || '#999';
+        var homeDivLabel = DIV_LABELS_JS[m.homeDivision] || m.homeDivision;
+        var awayDivLabel = DIV_LABELS_JS[m.awayDivision] || m.awayDivision;
+        var homeWin = m.winner === m.home;
+        var forfeit = m.forfeit;
+
+        var scoreDetail = '';
+        if (m.homeScores && m.homeScores.length > 0 && !forfeit) {
+            var setScores = [];
+            for (var i = 0; i < m.homeScores.length; i++) {
+                setScores.push(m.homeScores[i] + '-' + m.awayScores[i]);
+            }
+            scoreDetail = '<span class="ginette-set-detail">(' + setScores.join(', ') + ')</span>';
+        }
+
+        var cardClass = 'match-card ginette-match-card';
+        if (forfeit) cardClass += ' ginette-match-forfeit';
+
+        html += '<div class="' + cardClass + '">' +
+            '<div class="match-teams">' +
+                '<div class="match-team home">' +
+                    '<span class="division-badge division-badge-sm" style="background: ' + homeColor + ';">' + homeDivLabel + '</span>' +
+                    '<span class="team-name">' + m.home + '</span>' +
+                '</div>' +
+                '<div class="match-score">' +
+                    '<span class="' + (homeWin ? 'winner' : 'loser') + '">' + m.homeSets + '</span>' +
+                    '<span class="separator">-</span>' +
+                    '<span class="' + (homeWin ? 'loser' : 'winner') + '">' + m.awaySets + '</span>' +
+                '</div>' +
+                '<div class="match-team away">' +
+                    '<span class="team-name">' + m.away + '</span>' +
+                    '<span class="division-badge division-badge-sm" style="background: ' + awayColor + ';">' + awayDivLabel + '</span>' +
+                '</div>' +
+            '</div>' +
+            '<div class="ginette-match-detail">' + scoreDetail +
+                (forfeit ? '<span class="ginette-forfeit-badge">Forfait</span>' : '') +
+            '</div>' +
+        '</div>';
+    });
+    return html;
+}
+
+function renderGinetteClassement() {
+    if (!GINETTE_DATA) return;
+    var matches = GINETTE_DATA.matches;
+
+    var tour1 = matches.filter(function(m) { return m.round === 'Tour 1'; });
+    var tour2 = matches.filter(function(m) { return m.round === 'Tour 2'; });
+    var principale = matches.filter(function(m) { return m.round === '1/8 Principale'; });
+    var consolante = matches.filter(function(m) { return m.round === '1/8 Consolante'; });
+
+    // Tour 1
+    var tour1Container = document.getElementById('ginette-tour1');
+    if (tour1Container) {
+        tour1Container.innerHTML =
+            '<div class="matches-section">' +
+                '<div class="section-header" onclick="toggleMatchSection(\'ginette-tour1-matches\')">' +
+                    '<h3 class="section-title">Tour 1</h3>' +
+                    '<span class="section-badge">' + tour1.length + ' matchs</span>' +
+                    '<span class="section-arrow">&#9660;</span>' +
+                '</div>' +
+                '<div id="ginette-tour1-matches" class="section-collapsible">' +
+                    renderGinetteMatchCards(tour1) +
+                '</div>' +
+            '</div>';
+    }
+
+    // Tour 2
+    var tour2Container = document.getElementById('ginette-tour2');
+    if (tour2Container) {
+        tour2Container.innerHTML =
+            '<div class="matches-section">' +
+                '<div class="section-header" onclick="toggleMatchSection(\'ginette-tour2-matches\')">' +
+                    '<h3 class="section-title">Tour 2</h3>' +
+                    '<span class="section-badge">' + tour2.length + ' matchs</span>' +
+                    '<span class="section-arrow">&#9660;</span>' +
+                '</div>' +
+                '<div id="ginette-tour2-matches" class="section-collapsible">' +
+                    renderGinetteMatchCards(tour2) +
+                '</div>' +
+            '</div>';
+    }
+
+    // 1/8ème de finale
+    var huitContainer = document.getElementById('ginette-8eme');
+    if (huitContainer) {
+        huitContainer.innerHTML =
+            '<div class="matches-section">' +
+                '<div class="section-header" onclick="toggleMatchSection(\'ginette-principale-matches\')">' +
+                    '<h3 class="section-title">Principale</h3>' +
+                    '<span class="section-badge">' + principale.length + ' matchs</span>' +
+                    '<span class="section-arrow">&#9660;</span>' +
+                '</div>' +
+                '<div id="ginette-principale-matches" class="section-collapsible">' +
+                    renderGinetteMatchCards(principale) +
+                '</div>' +
+            '</div>' +
+            '<div class="matches-section" style="margin-top: 16px;">' +
+                '<div class="section-header" onclick="toggleMatchSection(\'ginette-consolante-matches\')">' +
+                    '<h3 class="section-title">Consolante</h3>' +
+                    '<span class="section-badge">' + consolante.length + ' matchs</span>' +
+                    '<span class="section-arrow">&#9660;</span>' +
+                '</div>' +
+                '<div id="ginette-consolante-matches" class="section-collapsible">' +
+                    renderGinetteMatchCards(consolante) +
+                '</div>' +
+            '</div>';
+    }
+}
+
+function renderGinette() {
+    var container = document.getElementById('ginette-content');
+    if (!container || !GINETTE_DATA) return;
+
+    var ranking = GINETTE_DATA.ranking;
+    var divStats = GINETTE_DATA.divisionStats;
+    var upsets = GINETTE_DATA.upsets;
+    var meta = GINETTE_DATA.meta;
+
+    // ── Ranking table ──
+    var rows = '';
+    ranking.forEach(function(r) {
+        var divColor = GINETTE_DIV_COLORS[r.divSlug] || '#999';
+        var barClass = r.rank <= 10 ? 'bar-rank-' + r.rank : 'bar-rank-rest';
+        var deltaClass = r.delta > 0 ? 'elo-up' : r.delta < 0 ? 'elo-down' : 'elo-neutral';
+        var deltaArrow = r.delta > 0 ? '\u25b2' : r.delta < 0 ? '\u25bc' : '';
+        var deltaText = r.delta > 0 ? '+' + r.delta : r.delta < 0 ? '' + r.delta : '-';
+
+        // Form items
+        var formHtml = r.form.map(function(f) {
+            var cls = f === 'W' ? 'form-win' : 'form-loss';
+            return '<span class="form-item form-item-sm ' + cls + '"></span>';
+        }).join('');
+
+        rows += '<tr>' +
+            '<td class="pr-rank">' + r.rank + '</td>' +
+            '<td>' +
+                '<div class="team-cell">' +
+                    '<span class="team-name">' + r.name + '</span>' +
+                '</div>' +
+            '</td>' +
+            '<td class="center"><span class="division-badge" style="background: ' + divColor + ';">' + r.division + '</span></td>' +
+            '<td class="center"><span class="pr-value">' + Math.round(r.elo) + '</span></td>' +
+            '<td class="center"><div class="pr-bar-container"><div class="pr-bar"><div class="pr-bar-fill ' + barClass + '" style="width: ' + r.power + '%;"></div></div></div></td>' +
+            '<td class="center"><span class="elo-movement ' + deltaClass + '">' + deltaArrow + ' ' + deltaText + '</span></td>' +
+            '<td class="center"><span class="record-text">' + r.record + '</span></td>' +
+            '<td class="center"><div class="form-container" style="justify-content: center;">' + formHtml + '</div></td>' +
+        '</tr>';
+    });
+
+    var rankingHtml = '<div class="table-container">' +
+        '<table class="pr-table">' +
+            '<thead><tr>' +
+                '<th style="width: 40px;">#</th>' +
+                '<th>\u00c9quipe</th>' +
+                '<th class="center">Division</th>' +
+                '<th class="center">ELO</th>' +
+                '<th class="center" style="width: 120px;"></th>' +
+                '<th class="center">\u0394</th>' +
+                '<th class="center">V-D</th>' +
+                '<th class="center">Forme</th>' +
+            '</tr></thead>' +
+            '<tbody>' + rows + '</tbody>' +
+        '</table>' +
+    '</div>';
+
+    // ── Division stats ──
+    var divRows = '';
+    divStats.forEach(function(d) {
+        var divColor = GINETTE_DIV_COLORS[d.slug] || '#999';
+        divRows += '<tr>' +
+            '<td><span class="division-badge" style="background: ' + divColor + ';">' + d.name + '</span></td>' +
+            '<td class="center">' + d.teams + '</td>' +
+            '<td class="center"><strong>' + Math.round(d.avgElo) + '</strong></td>' +
+            '<td class="center">' + Math.round(d.maxElo) + '</td>' +
+            '<td class="center">' + Math.round(d.minElo) + '</td>' +
+            '<td class="center">' + d.wins + '-' + d.losses + '</td>' +
+            '<td class="center"><strong>' + d.winPct + '%</strong></td>' +
+        '</tr>';
+    });
+
+    var divStatsHtml = '<div class="ginette-section">' +
+        '<h3 class="ginette-section-title">Performance par division</h3>' +
+        '<div class="table-container">' +
+            '<table class="pr-table ginette-div-table">' +
+                '<thead><tr>' +
+                    '<th>Division</th>' +
+                    '<th class="center">\u00c9q.</th>' +
+                    '<th class="center">ELO moy.</th>' +
+                    '<th class="center">Max</th>' +
+                    '<th class="center">Min</th>' +
+                    '<th class="center">V-D</th>' +
+                    '<th class="center">% Vic.</th>' +
+                '</tr></thead>' +
+                '<tbody>' + divRows + '</tbody>' +
+            '</table>' +
+        '</div>' +
+    '</div>';
+
+    // ── Upsets ──
+    var upsetsHtml = '';
+    if (upsets && upsets.length > 0) {
+        var upsetItems = '';
+        upsets.forEach(function(u) {
+            var fires = '';
+            for (var i = 0; i < Math.min(u.gap, 3); i++) fires += '\uD83D\uDD25';
+            var wColor = GINETTE_DIV_COLORS[u.winnerDiv.toLowerCase().replace(' 6x6', '').replace('or ', 'or')] || '#999';
+            var lColor = GINETTE_DIV_COLORS[u.loserDiv.toLowerCase().replace(' 6x6', '').replace('or ', 'or')] || '#999';
+            // Map display names back to slugs for color lookup
+            var wSlug = Object.keys(GINETTE_DIV_COLORS).find(function(k) {
+                return DIV_LABELS_JS[k] === u.winnerDiv;
+            }) || '';
+            var lSlug = Object.keys(GINETTE_DIV_COLORS).find(function(k) {
+                return DIV_LABELS_JS[k] === u.loserDiv;
+            }) || '';
+            wColor = GINETTE_DIV_COLORS[wSlug] || '#999';
+            lColor = GINETTE_DIV_COLORS[lSlug] || '#999';
+
+            upsetItems += '<div class="upset-item">' +
+                '<span class="upset-fire">' + fires + '</span> ' +
+                '<strong>' + u.winner + '</strong> ' +
+                '<span class="division-badge division-badge-sm" style="background: ' + wColor + ';">' + u.winnerDiv + '</span>' +
+                ' bat ' +
+                '<strong>' + u.loser + '</strong> ' +
+                '<span class="division-badge division-badge-sm" style="background: ' + lColor + ';">' + u.loserDiv + '</span>' +
+                ' <span class="upset-score">' + u.score + '</span>' +
+            '</div>';
+        });
+
+        upsetsHtml = '<div class="ginette-section">' +
+            '<h3 class="ginette-section-title">Upsets notables</h3>' +
+            '<div class="ginette-upsets">' + upsetItems + '</div>' +
+        '</div>';
+    }
+
+    // ── Meta info ──
+    var metaHtml = '<div class="ginette-meta">' +
+        '<span class="ginette-meta-item">' + meta.teamCount + ' \u00e9quipes</span>' +
+        '<span class="ginette-meta-item">' + meta.matchCount + ' matchs</span>' +
+        '<span class="ginette-meta-item">' + meta.rounds.length + ' tours</span>' +
+        '<span class="ginette-meta-item">Mis \u00e0 jour : ' + meta.lastUpdated.split('T')[0] + '</span>' +
+    '</div>';
+
+    container.innerHTML = metaHtml + rankingHtml + divStatsHtml + upsetsHtml;
+}
+
+var DIV_LABELS_JS = {
+    "elite": "Elite",
+    "hard": "Hard",
+    "medium": "Medium",
+    "easy": "Easy",
+    "starter": "Starter",
+    "or6x6": "Or 6x6",
+    "argent": "Argent"
+};
+
+// ------------------------------------------------------------
+// 8. Evolution chart (canvas drawing)
 // ------------------------------------------------------------
 
 function drawEvolutionChart() {

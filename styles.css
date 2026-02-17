@@ -699,6 +699,151 @@
             color: var(--text-secondary);
         }
 
+        /* Ginette cross-division */
+        .ginette-meta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            padding: 12px 16px;
+            background: var(--bg-header);
+            border-radius: 8px;
+        }
+
+        .ginette-meta-item {
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .division-badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            color: white;
+            white-space: nowrap;
+        }
+
+        .division-badge-sm {
+            padding: 1px 6px;
+            font-size: 10px;
+            border-radius: 8px;
+        }
+
+        .ginette-section {
+            margin-top: 32px;
+        }
+
+        .ginette-section-title {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .ginette-div-table th:first-child,
+        .ginette-div-table td:first-child {
+            text-align: left;
+            padding-left: 12px;
+        }
+
+        .ginette-upsets {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .upset-item {
+            padding: 8px 12px;
+            background: var(--bg-header);
+            border-radius: 8px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .upset-fire {
+            font-size: 14px;
+        }
+
+        .upset-score {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Ginette tabs (same positioning as normal tabs) */
+        .ginette-tabs {
+            display: flex;
+            gap: 8px;
+            margin-left: auto;
+        }
+
+        .mobile-ginette-tabs {
+            display: none;
+        }
+
+        .ginette-tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .ginette-tab-content.active {
+            display: block;
+        }
+
+        .ginette-sub-tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .ginette-sub-tab-content.active {
+            display: block;
+        }
+
+        /* Ginette match cards */
+        .ginette-match-card {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            padding: 10px 20px;
+        }
+
+        .ginette-match-card .match-teams {
+            gap: 12px;
+        }
+
+        .ginette-match-card .match-team {
+            width: 220px;
+            gap: 6px;
+        }
+
+        .ginette-match-detail {
+            text-align: center;
+            margin-top: 2px;
+        }
+
+        .ginette-set-detail {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .ginette-forfeit-badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 600;
+            color: #ea580c;
+            background: rgba(249, 115, 22, 0.1);
+            padding: 1px 8px;
+            border-radius: 10px;
+            margin-left: 6px;
+        }
+
+        .ginette-match-forfeit {
+            opacity: 0.6;
+        }
+
         /* Loading overlay */
         .loading-overlay {
             display: none;
@@ -780,7 +925,7 @@
                 width: 16px;
             }
 
-            .tabs {
+            .tabs, .ginette-tabs {
                 display: none;
             }
 
@@ -811,7 +956,7 @@
                 text-align: center;
             }
 
-            .mobile-tabs {
+            .mobile-tabs, .mobile-ginette-tabs {
                 display: flex;
                 gap: 6px;
                 margin-bottom: 16px;
@@ -819,7 +964,7 @@
                 justify-content: center;
             }
 
-            .mobile-tabs .tab {
+            .mobile-tabs .tab, .mobile-ginette-tabs .tab {
                 padding: 8px 12px;
                 font-size: 13px;
             }
@@ -945,7 +1090,7 @@
         }
 
         @media (min-width: 901px) {
-            .mobile-tabs {
+            .mobile-tabs, .mobile-ginette-tabs {
                 display: none;
             }
         }

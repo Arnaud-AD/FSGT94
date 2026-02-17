@@ -2,6 +2,7 @@
 .claude/
 CLAUDE.md
 scrape_fsgt.py
+ginette_elo.py
 __pycache__/
 championships_data/
 start.command

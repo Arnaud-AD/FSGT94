@@ -20,6 +20,10 @@
                 <button class="tab" onclick="showTab('matchs')">Matchs</button>
                 <button class="tab" onclick="showTab('powerranking')">Power Ranking</button>
             </div>
+            <div class="ginette-tabs" style="display: none;">
+                <button class="tab active" onclick="showGinetteTab('ginette-classement')">Classement</button>
+                <button class="tab" onclick="showGinetteTab('ginette-pr')">Power Ranking</button>
+            </div>
         </header>
 
         <!-- Mobile Championship + Tabs -->
@@ -30,6 +34,10 @@
             <button class="tab active" onclick="showTab('classement')">Classement</button>
             <button class="tab" onclick="showTab('matchs')">Matchs</button>
             <button class="tab" onclick="showTab('powerranking')">Power Ranking</button>
+        </div>
+        <div class="mobile-ginette-tabs" style="display: none;">
+            <button class="tab active" onclick="showGinetteTab('ginette-classement')">Classement</button>
+            <button class="tab" onclick="showGinetteTab('ginette-pr')">Power Ranking</button>
         </div>
 
         <!-- CLASSEMENT TAB -->
@@ -72,6 +80,28 @@
             </div>
             <div id="pr-joueurs" class="sub-tab-content">
                 <div id="pr-joueurs-content"></div>
+            </div>
+        </div>
+
+        <!-- GINETTE (Coupe inter-divisions) -->
+        <div id="ginette" class="tab-content">
+            <!-- Ginette Classement -->
+            <div id="ginette-classement" class="ginette-tab-content active">
+                <h2 class="section-title">Classement — Coupe Ginette</h2>
+                <div class="sub-tabs">
+                    <button class="sub-tab active" onclick="showGinetteSubTab('ginette-tour1', this)">Tour 1</button>
+                    <button class="sub-tab" onclick="showGinetteSubTab('ginette-tour2', this)">Tour 2</button>
+                    <button class="sub-tab" onclick="showGinetteSubTab('ginette-8eme', this)">1/8&#232;me de finale</button>
+                </div>
+                <div id="ginette-tour1" class="ginette-sub-tab-content active"></div>
+                <div id="ginette-tour2" class="ginette-sub-tab-content"></div>
+                <div id="ginette-8eme" class="ginette-sub-tab-content"></div>
+            </div>
+
+            <!-- Ginette Power Ranking -->
+            <div id="ginette-pr" class="ginette-tab-content">
+                <h2 class="section-title">Power Ranking ELO — Coupe Ginette</h2>
+                <div id="ginette-content"></div>
             </div>
         </div>
 
