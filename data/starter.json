@@ -5,10 +5,10 @@
     "name": "Starter",
     "format": "4x4",
     "url": "https://volley-fsgt94.fr/championnat/16",
-    "lastUpdated": "2026-02-14T22:28:33",
+    "lastUpdated": "2026-02-17T03:10:47",
     "teamCount": 8,
-    "matchesPlayed": 31,
-    "matchesUpcoming": 25
+    "matchesPlayed": 32,
+    "matchesUpcoming": 24
   },
   "teams": {
     "bach": {
@@ -36,14 +36,14 @@
       "short": "DA",
       "color": "#9b59b6"
     },
-    "gold": {
-      "name": "Gold Digger",
-      "short": "GD",
-      "color": "#1abc9c"
-    },
     "bler": {
       "name": "Les blérots",
       "short": "BL",
+      "color": "#1abc9c"
+    },
+    "gold": {
+      "name": "Gold Digger",
+      "short": "GD",
       "color": "#e67e22"
     },
     "caip": {
@@ -78,7 +78,7 @@
         "W"
       ],
       "formRetour": [
-        "P",
+        "D",
         "P",
         "P",
         "P",
@@ -146,7 +146,7 @@
         "W"
       ],
       "formRetour": [
-        "P",
+        "D",
         "P",
         "P",
         "P",
@@ -243,13 +243,13 @@
         "L",
         "L",
         "W",
-        "L",
         "W",
+        "L",
         "L"
       ],
       "formRetour": [
         "L",
-        "P",
+        "D",
         "P",
         "P",
         "P",
@@ -260,18 +260,18 @@
     {
       "rank": 7,
       "team": "bler",
-      "mj": 8,
-      "g": 1,
+      "mj": 9,
+      "g": 2,
       "p": 7,
-      "setPlus": 6,
+      "setPlus": 9,
       "setMinus": 21,
-      "ds": -15,
-      "coefSet": "0.29",
-      "ptsPlus": 517,
-      "ptsMinus": 641,
-      "dp": "-124",
-      "coefPts": "0.81",
-      "pts": 9,
+      "ds": -12,
+      "coefSet": "0.43",
+      "ptsPlus": 592,
+      "ptsMinus": 691,
+      "dp": "-99",
+      "coefPts": "0.86",
+      "pts": 11,
       "formAller": [
         "W",
         "L",
@@ -282,7 +282,7 @@
         "L"
       ],
       "formRetour": [
-        "P",
+        "W",
         "L",
         "P",
         "P",
@@ -294,18 +294,18 @@
     {
       "rank": 8,
       "team": "caip",
-      "mj": 7,
+      "mj": 8,
       "g": 0,
-      "p": 7,
+      "p": 8,
       "setPlus": 2,
-      "setMinus": 21,
-      "ds": -19,
-      "coefSet": "0.10",
-      "ptsPlus": 391,
-      "ptsMinus": 564,
-      "dp": "-173",
+      "setMinus": 24,
+      "ds": -22,
+      "coefSet": "0.08",
+      "ptsPlus": 441,
+      "ptsMinus": 639,
+      "dp": "-198",
       "coefPts": "0.69",
-      "pts": 7,
+      "pts": 8,
       "formAller": [
         "L",
         "L",
@@ -316,8 +316,8 @@
         "L"
       ],
       "formRetour": [
-        "P",
-        "P",
+        "L",
+        "D",
         "P",
         "P",
         "P",
@@ -327,6 +327,15 @@
     }
   ],
   "matchesPlayed": [
+    {
+      "date": "16/02/2026",
+      "home": "caip",
+      "away": "bler",
+      "scoreHome": 0,
+      "scoreAway": 3,
+      "homeWin": false,
+      "status": "Terminé"
+    },
     {
       "date": "11/02/2026",
       "home": "gail",
@@ -612,13 +621,7 @@
       "date": "16/02/2026",
       "home": "gvc",
       "away": "gold",
-      "status": "Sem. 8"
-    },
-    {
-      "date": "16/02/2026",
-      "home": "caip",
-      "away": "bler",
-      "status": "Sem. 8"
+      "status": "Reporté"
     },
     {
       "date": "18/02/2026",
@@ -654,7 +657,7 @@
       "date": "20/03/2026",
       "home": "coco",
       "away": "caip",
-      "status": "Sem. 8"
+      "status": "Reporté"
     },
     {
       "date": "23/03/2026",
@@ -706,6 +709,12 @@
     },
     {
       "date": "06/04/2026",
+      "home": "bler",
+      "away": "gold",
+      "status": "Sem. 12"
+    },
+    {
+      "date": "06/04/2026",
       "home": "bach",
       "away": "gvc",
       "status": "Sem. 13"
@@ -714,12 +723,6 @@
       "date": "06/04/2026",
       "home": "caip",
       "away": "daiq",
-      "status": "Sem. 13"
-    },
-    {
-      "date": "06/04/2026",
-      "home": "bler",
-      "away": "gold",
       "status": "Sem. 13"
     },
     {
@@ -766,7 +769,7 @@
       "elo": 1681.5,
       "movement": 25.1,
       "record": "7-0",
-      "power": 100.0,
+      "power": 91.8,
       "calendar": "V x7",
       "diffClass": "diff-easy"
     },
@@ -776,7 +779,7 @@
       "elo": 1660.6,
       "movement": 27.6,
       "record": "7-1",
-      "power": 94.2,
+      "power": 87.0,
       "calendar": "V x3",
       "diffClass": "diff-easy"
     },
@@ -786,7 +789,7 @@
       "elo": 1571.9,
       "movement": -30.5,
       "record": "5-2",
-      "power": 69.8,
+      "power": 66.6,
       "calendar": "D vs GVC",
       "diffClass": "diff-hard"
     },
@@ -796,7 +799,7 @@
       "elo": 1545.4,
       "movement": 21.8,
       "record": "6-3",
-      "power": 62.5,
+      "power": 60.5,
       "calendar": "V vs Gold",
       "diffClass": "diff-easy"
     },
@@ -806,7 +809,7 @@
       "elo": 1458.8,
       "movement": -27.6,
       "record": "3-5",
-      "power": 38.7,
+      "power": 40.5,
       "calendar": "D vs Bachateam",
       "diffClass": "diff-hard"
     },
@@ -816,28 +819,28 @@
       "elo": 1412.8,
       "movement": -21.8,
       "record": "2-6",
-      "power": 26.0,
+      "power": 29.9,
       "calendar": "D x3",
       "diffClass": "diff-hard"
     },
     {
       "rank": 7,
       "team": "bler",
-      "elo": 1343.1,
-      "movement": -24.5,
-      "record": "1-7",
-      "power": 6.8,
-      "calendar": "D x6",
-      "diffClass": "diff-hard"
+      "elo": 1386.0,
+      "movement": 42.9,
+      "record": "2-7",
+      "power": 23.7,
+      "calendar": "V vs Caïpiranha",
+      "diffClass": "diff-easy"
     },
     {
       "rank": 8,
       "team": "caip",
-      "elo": 1325.9,
-      "movement": -11.0,
-      "record": "0-7",
+      "elo": 1282.9,
+      "movement": -42.9,
+      "record": "0-8",
       "power": 0.0,
-      "calendar": "D x7",
+      "calendar": "D x8",
       "diffClass": "diff-hard"
     }
   ],
@@ -897,6 +900,18 @@
       1486.3,
       1458.8
     ],
+    "bler": [
+      1500,
+      1467.1,
+      1491.7,
+      1478.9,
+      1446.4,
+      1429.0,
+      1396.9,
+      1367.6,
+      1343.1,
+      1386.0
+    ],
     "gold": [
       1500,
       1468.7,
@@ -908,17 +923,6 @@
       1434.6,
       1412.8
     ],
-    "bler": [
-      1500,
-      1467.1,
-      1491.7,
-      1478.9,
-      1446.4,
-      1429.0,
-      1396.9,
-      1367.6,
-      1343.1
-    ],
     "caip": [
       1500,
       1463.3,
@@ -927,7 +931,8 @@
       1382.1,
       1362.3,
       1336.9,
-      1325.9
+      1325.9,
+      1282.9
     ]
   },
   "evolutionData": {
@@ -1001,6 +1006,21 @@
         ],
         "rank": 5
       },
+      "bler": {
+        "points": [
+          0,
+          1,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          11
+        ],
+        "rank": 7
+      },
       "gold": {
         "points": [
           0,
@@ -1015,20 +1035,6 @@
         ],
         "rank": 6
       },
-      "bler": {
-        "points": [
-          0,
-          1,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ],
-        "rank": 7
-      },
       "caip": {
         "points": [
           0,
@@ -1038,7 +1044,8 @@
           4,
           5,
           6,
-          7
+          7,
+          8
         ],
         "rank": 8
       }

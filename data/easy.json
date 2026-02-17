@@ -5,20 +5,20 @@
     "name": "Easy",
     "format": "4x4",
     "url": "https://volley-fsgt94.fr/championnat/3",
-    "lastUpdated": "2026-02-14T22:28:33",
+    "lastUpdated": "2026-02-17T03:10:46",
     "teamCount": 8,
-    "matchesPlayed": 30,
-    "matchesUpcoming": 26
+    "matchesPlayed": 31,
+    "matchesUpcoming": 25
   },
   "teams": {
-    "pyth": {
-      "name": "Pythons Collés",
-      "short": "PC",
-      "color": "#e74c3c"
-    },
     "neku": {
       "name": "Nekutā",
       "short": "NE",
+      "color": "#e74c3c"
+    },
+    "pyth": {
+      "name": "Pythons Collés",
+      "short": "PC",
       "color": "#3498db"
     },
     "fous": {
@@ -55,6 +55,40 @@
   "standings": [
     {
       "rank": 1,
+      "team": "neku",
+      "mj": 8,
+      "g": 7,
+      "p": 1,
+      "setPlus": 22,
+      "setMinus": 7,
+      "ds": 15,
+      "coefSet": "3.14",
+      "ptsPlus": 682,
+      "ptsMinus": 557,
+      "dp": "+125",
+      "coefPts": "1.22",
+      "pts": 15,
+      "formAller": [
+        "W",
+        "W",
+        "L",
+        "W",
+        "W",
+        "W",
+        "W"
+      ],
+      "formRetour": [
+        "D",
+        "W",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P"
+      ]
+    },
+    {
+      "rank": 2,
       "team": "pyth",
       "mj": 8,
       "g": 7,
@@ -79,41 +113,7 @@
       ],
       "formRetour": [
         "W",
-        "P",
-        "P",
-        "P",
-        "P",
-        "P",
-        "P"
-      ]
-    },
-    {
-      "rank": 2,
-      "team": "neku",
-      "mj": 7,
-      "g": 6,
-      "p": 1,
-      "setPlus": 19,
-      "setMinus": 7,
-      "ds": 12,
-      "coefSet": "2.71",
-      "ptsPlus": 607,
-      "ptsMinus": 519,
-      "dp": "+88",
-      "coefPts": "1.17",
-      "pts": 13,
-      "formAller": [
-        "W",
-        "W",
-        "L",
-        "W",
-        "W",
-        "W",
-        "W"
-      ],
-      "formRetour": [
         "D",
-        "P",
         "P",
         "P",
         "P",
@@ -147,7 +147,7 @@
       ],
       "formRetour": [
         "W",
-        "P",
+        "D",
         "P",
         "P",
         "P",
@@ -181,7 +181,7 @@
       ],
       "formRetour": [
         "D",
-        "P",
+        "D",
         "P",
         "P",
         "P",
@@ -215,7 +215,7 @@
       ],
       "formRetour": [
         "W",
-        "P",
+        "D",
         "P",
         "P",
         "P",
@@ -225,40 +225,6 @@
     },
     {
       "rank": 6,
-      "team": "punc",
-      "mj": 8,
-      "g": 2,
-      "p": 6,
-      "setPlus": 8,
-      "setMinus": 19,
-      "ds": -11,
-      "coefSet": "0.42",
-      "ptsPlus": 532,
-      "ptsMinus": 620,
-      "dp": "-88",
-      "coefPts": "0.86",
-      "pts": 10,
-      "formAller": [
-        "L",
-        "L",
-        "W",
-        "L",
-        "L",
-        "W",
-        "L"
-      ],
-      "formRetour": [
-        "L",
-        "P",
-        "P",
-        "P",
-        "P",
-        "P",
-        "P"
-      ]
-    },
-    {
-      "rank": 7,
       "team": "fata",
       "mj": 7,
       "g": 1,
@@ -284,6 +250,40 @@
       "formRetour": [
         "L",
         "P",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P"
+      ]
+    },
+    {
+      "rank": 7,
+      "team": "punc",
+      "mj": 9,
+      "g": 2,
+      "p": 7,
+      "setPlus": 8,
+      "setMinus": 22,
+      "ds": -14,
+      "coefSet": "0.36",
+      "ptsPlus": 570,
+      "ptsMinus": 695,
+      "dp": "-125",
+      "coefPts": "0.82",
+      "pts": 11,
+      "formAller": [
+        "L",
+        "L",
+        "W",
+        "L",
+        "L",
+        "W",
+        "L"
+      ],
+      "formRetour": [
+        "L",
+        "L",
         "P",
         "P",
         "P",
@@ -327,6 +327,15 @@
     }
   ],
   "matchesPlayed": [
+    {
+      "date": "16/02/2026",
+      "home": "punc",
+      "away": "neku",
+      "scoreHome": 0,
+      "scoreAway": 3,
+      "homeWin": false,
+      "status": "Terminé"
+    },
     {
       "date": "10/02/2026",
       "home": "fous",
@@ -545,8 +554,8 @@
     },
     {
       "date": "03/11/2025",
-      "home": "pyth",
-      "away": "fous",
+      "home": "punc",
+      "away": "neku",
       "scoreHome": 0,
       "scoreAway": 3,
       "homeWin": false,
@@ -554,8 +563,8 @@
     },
     {
       "date": "03/11/2025",
-      "home": "punc",
-      "away": "neku",
+      "home": "pyth",
+      "away": "fous",
       "scoreHome": 0,
       "scoreAway": 3,
       "homeWin": false,
@@ -606,22 +615,16 @@
       "status": "Reporté"
     },
     {
-      "date": "16/02/2026",
-      "home": "punc",
-      "away": "neku",
-      "status": "Sem. 9"
-    },
-    {
       "date": "17/02/2026",
       "home": "fous",
       "away": "pyth",
-      "status": "Sem. 9"
+      "status": "Reporté"
     },
     {
       "date": "17/02/2026",
       "home": "bats",
       "away": "touk",
-      "status": "Sem. 9"
+      "status": "Reporté"
     },
     {
       "date": "19/02/2026",
@@ -636,15 +639,15 @@
       "status": "Sem. 10"
     },
     {
-      "date": "09/03/2026",
-      "home": "eagl",
-      "away": "punc",
-      "status": "Sem. 10"
-    },
-    {
       "date": "10/03/2026",
       "home": "bats",
       "away": "fous",
+      "status": "Sem. 10"
+    },
+    {
+      "date": "11/03/2026",
+      "home": "eagl",
+      "away": "punc",
       "status": "Sem. 10"
     },
     {
@@ -733,14 +736,14 @@
     },
     {
       "date": "04/05/2026",
-      "home": "pyth",
-      "away": "bats",
+      "home": "eagl",
+      "away": "neku",
       "status": "Sem. 14"
     },
     {
       "date": "04/05/2026",
-      "home": "eagl",
-      "away": "neku",
+      "home": "pyth",
+      "away": "bats",
       "status": "Sem. 14"
     },
     {
@@ -759,22 +762,22 @@
   "prTeams": [
     {
       "rank": 1,
+      "team": "neku",
+      "elo": 1648.4,
+      "movement": 21.1,
+      "record": "7-1",
+      "power": 99.3,
+      "calendar": "V vs Punchline",
+      "diffClass": "diff-easy"
+    },
+    {
+      "rank": 2,
       "team": "pyth",
       "elo": 1637.8,
       "movement": 18.2,
       "record": "7-1",
       "power": 95.8,
       "calendar": "V x6",
-      "diffClass": "diff-easy"
-    },
-    {
-      "rank": 2,
-      "team": "neku",
-      "elo": 1627.3,
-      "movement": 15.0,
-      "record": "6-1",
-      "power": 92.3,
-      "calendar": "V vs Eagle",
       "diffClass": "diff-easy"
     },
     {
@@ -810,11 +813,11 @@
     {
       "rank": 6,
       "team": "punc",
-      "elo": 1411.1,
-      "movement": -18.2,
-      "record": "2-6",
-      "power": 20.4,
-      "calendar": "D vs Pythons",
+      "elo": 1390.0,
+      "movement": -21.1,
+      "record": "2-7",
+      "power": 13.4,
+      "calendar": "D x3",
       "diffClass": "diff-hard"
     },
     {
@@ -840,6 +843,17 @@
   ],
   "prPlayers": [],
   "eloHistory": {
+    "neku": [
+      1500,
+      1519.0,
+      1552.1,
+      1570.9,
+      1600.8,
+      1635.5,
+      1612.3,
+      1627.3,
+      1648.4
+    ],
     "pyth": [
       1500,
       1523.6,
@@ -850,16 +864,6 @@
       1596.2,
       1619.6,
       1637.8
-    ],
-    "neku": [
-      1500,
-      1519.0,
-      1552.1,
-      1570.9,
-      1600.8,
-      1635.5,
-      1612.3,
-      1627.3
     ],
     "fous": [
       1500,
@@ -901,7 +905,8 @@
       1404.7,
       1448.1,
       1429.3,
-      1411.1
+      1411.1,
+      1390.0
     ],
     "eagl": [
       1500,
@@ -927,6 +932,20 @@
   },
   "evolutionData": {
     "teams": {
+      "neku": {
+        "points": [
+          0,
+          2,
+          4,
+          6,
+          8,
+          10,
+          11,
+          13,
+          15
+        ],
+        "rank": 1
+      },
       "pyth": {
         "points": [
           0,
@@ -938,19 +957,6 @@
           11,
           13,
           15
-        ],
-        "rank": 1
-      },
-      "neku": {
-        "points": [
-          0,
-          2,
-          4,
-          6,
-          8,
-          10,
-          11,
-          13
         ],
         "rank": 2
       },
@@ -1004,9 +1010,10 @@
           6,
           8,
           9,
-          10
+          10,
+          11
         ],
-        "rank": 6
+        "rank": 7
       },
       "eagl": {
         "points": [
@@ -1033,7 +1040,7 @@
           7,
           8
         ],
-        "rank": 7
+        "rank": 6
       }
     }
   }
