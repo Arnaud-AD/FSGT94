@@ -5,7 +5,7 @@
     "name": "Medium",
     "format": "4x4",
     "url": "https://volley-fsgt94.fr/championnat/15",
-    "lastUpdated": "2026-02-19T02:23:13",
+    "lastUpdated": "2026-02-20T05:15:52",
     "teamCount": 9,
     "matchesPlayed": 39,
     "matchesUpcoming": 33
@@ -193,7 +193,7 @@
       ],
       "formRetour": [
         "W",
-        "P",
+        "D",
         "P",
         "P",
         "P",
@@ -229,7 +229,7 @@
       ],
       "formRetour": [
         "L",
-        "P",
+        "D",
         "P",
         "P",
         "P",
@@ -741,7 +741,7 @@
       "date": "20/02/2026",
       "home": "team",
       "away": "mort",
-      "status": "Sem. 10"
+      "status": "Reporté"
     },
     {
       "date": "10/03/2026",

@@ -5,10 +5,10 @@
     "name": "Easy",
     "format": "4x4",
     "url": "https://volley-fsgt94.fr/championnat/3",
-    "lastUpdated": "2026-02-19T02:23:14",
+    "lastUpdated": "2026-02-20T05:15:52",
     "teamCount": 8,
-    "matchesPlayed": 33,
-    "matchesUpcoming": 23
+    "matchesPlayed": 34,
+    "matchesUpcoming": 22
   },
   "teams": {
     "pyth": {
@@ -41,14 +41,14 @@
       "short": "PU",
       "color": "#1abc9c"
     },
-    "eagl": {
-      "name": "Eagle 4",
-      "short": "E4",
-      "color": "#e67e22"
-    },
     "fata": {
       "name": "FATALS FURETS",
       "short": "FF",
+      "color": "#e67e22"
+    },
+    "eagl": {
+      "name": "Eagle 4",
+      "short": "E4",
       "color": "#f1c40f"
     }
   },
@@ -226,18 +226,18 @@
     {
       "rank": 6,
       "team": "fata",
-      "mj": 7,
-      "g": 1,
+      "mj": 8,
+      "g": 2,
       "p": 6,
-      "setPlus": 7,
-      "setMinus": 20,
-      "ds": -13,
-      "coefSet": "0.35",
-      "ptsPlus": 496,
-      "ptsMinus": 600,
-      "dp": "-104",
-      "coefPts": "0.83",
-      "pts": 8,
+      "setPlus": 10,
+      "setMinus": 21,
+      "ds": -11,
+      "coefSet": "0.48",
+      "ptsPlus": 592,
+      "ptsMinus": 679,
+      "dp": "-87",
+      "coefPts": "0.87",
+      "pts": 10,
       "formAller": [
         "W",
         "L",
@@ -249,7 +249,7 @@
       ],
       "formRetour": [
         "L",
-        "D",
+        "W",
         "P",
         "P",
         "P",
@@ -294,18 +294,18 @@
     {
       "rank": 8,
       "team": "eagl",
-      "mj": 8,
+      "mj": 9,
       "g": 1,
-      "p": 7,
-      "setPlus": 5,
-      "setMinus": 20,
-      "ds": -15,
-      "coefSet": "0.25",
-      "ptsPlus": 452,
-      "ptsMinus": 593,
-      "dp": "-141",
-      "coefPts": "0.76",
-      "pts": 9,
+      "p": 8,
+      "setPlus": 6,
+      "setMinus": 23,
+      "ds": -17,
+      "coefSet": "0.26",
+      "ptsPlus": 531,
+      "ptsMinus": 689,
+      "dp": "-158",
+      "coefPts": "0.77",
+      "pts": 10,
       "formAller": [
         "L",
         "W",
@@ -317,7 +317,7 @@
       ],
       "formRetour": [
         "L",
-        "D",
+        "L",
         "P",
         "P",
         "P",
@@ -327,6 +327,15 @@
     }
   ],
   "matchesPlayed": [
+    {
+      "date": "19/02/2026",
+      "home": "fata",
+      "away": "eagl",
+      "scoreHome": 3,
+      "scoreAway": 1,
+      "homeWin": true,
+      "status": "Terminé"
+    },
     {
       "date": "17/02/2026",
       "home": "fous",
@@ -633,12 +642,6 @@
       "status": "Reporté"
     },
     {
-      "date": "19/02/2026",
-      "home": "fata",
-      "away": "eagl",
-      "status": "Reporté"
-    },
-    {
       "date": "09/03/2026",
       "home": "pyth",
       "away": "neku",
@@ -772,7 +775,7 @@
       "elo": 1659.0,
       "movement": 21.3,
       "record": "8-1",
-      "power": 100.0,
+      "power": 96.8,
       "calendar": "V x7",
       "diffClass": "diff-easy"
     },
@@ -782,7 +785,7 @@
       "elo": 1648.4,
       "movement": 21.1,
       "record": "7-1",
-      "power": 96.7,
+      "power": 93.7,
       "calendar": "V vs Punchline",
       "diffClass": "diff-easy"
     },
@@ -792,7 +795,7 @@
       "elo": 1575.3,
       "movement": 35.8,
       "record": "5-3",
-      "power": 73.7,
+      "power": 72.2,
       "calendar": "V vs Batstreet",
       "diffClass": "diff-easy"
     },
@@ -802,7 +805,7 @@
       "elo": 1544.4,
       "movement": -21.3,
       "record": "5-3",
-      "power": 64.0,
+      "power": 63.1,
       "calendar": "D vs Pythons",
       "diffClass": "diff-hard"
     },
@@ -812,7 +815,7 @@
       "elo": 1472.6,
       "movement": -35.8,
       "record": "4-5",
-      "power": 41.4,
+      "power": 41.9,
       "calendar": "D vs TOUKC",
       "diffClass": "diff-hard"
     },
@@ -822,28 +825,28 @@
       "elo": 1390.0,
       "movement": -21.1,
       "record": "2-7",
-      "power": 15.4,
+      "power": 17.6,
       "calendar": "D x3",
       "diffClass": "diff-hard"
     },
     {
       "rank": 7,
-      "team": "eagl",
-      "elo": 1360.6,
-      "movement": -20.4,
-      "record": "1-7",
-      "power": 6.2,
-      "calendar": "D vs Les",
-      "diffClass": "diff-hard"
+      "team": "fata",
+      "elo": 1379.9,
+      "movement": 30.4,
+      "record": "2-6",
+      "power": 14.6,
+      "calendar": "V vs Eagle",
+      "diffClass": "diff-easy"
     },
     {
       "rank": 8,
-      "team": "fata",
-      "elo": 1349.6,
-      "movement": -13.1,
-      "record": "1-6",
-      "power": 2.7,
-      "calendar": "D x6",
+      "team": "eagl",
+      "elo": 1330.3,
+      "movement": -30.4,
+      "record": "1-8",
+      "power": 1.0,
+      "calendar": "D vs FATALS",
       "diffClass": "diff-hard"
     }
   ],
@@ -918,6 +921,17 @@
       1411.1,
       1390.0
     ],
+    "fata": [
+      1500,
+      1518.3,
+      1490.8,
+      1460.9,
+      1417.5,
+      1399.5,
+      1362.6,
+      1349.6,
+      1379.9
+    ],
     "eagl": [
       1500,
       1462.7,
@@ -927,17 +941,8 @@
       1359.2,
       1344.2,
       1381.0,
-      1360.6
-    ],
-    "fata": [
-      1500,
-      1518.3,
-      1490.8,
-      1460.9,
-      1417.5,
-      1399.5,
-      1362.6,
-      1349.6
+      1360.6,
+      1330.3
     ]
   },
   "evolutionData": {
@@ -1029,6 +1034,20 @@
         ],
         "rank": 7
       },
+      "fata": {
+        "points": [
+          0,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          10
+        ],
+        "rank": 6
+      },
       "eagl": {
         "points": [
           0,
@@ -1039,22 +1058,10 @@
           5,
           6,
           8,
-          9
+          9,
+          10
         ],
         "rank": 8
-      },
-      "fata": {
-        "points": [
-          0,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8
-        ],
-        "rank": 6
       }
     }
   }
