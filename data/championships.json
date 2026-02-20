@@ -35,6 +35,12 @@
       "slug": "or6x6",
       "name": "Or 6x6",
       "format": "6x6"
+    },
+    {
+      "id": null,
+      "slug": "ginette",
+      "name": "Coupe Ginette",
+      "format": "coupe"
     }
   ],
   "default": "elite",
